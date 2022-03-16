@@ -1,0 +1,461 @@
+
+
+
+
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+
+<style type="text/css">
+  
+
+
+  @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px;
+  background:url("data:image/jpeg;base64,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")
+
+}
+.container{
+  max-width: 800px;
+  background: #fff;
+  width: 800px;
+  padding: 25px 40px 10px 40px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.container .text{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.container form{
+  padding: 30px 0 0 0;
+}
+.container form .form-row{
+  display: flex;
+  margin: 32px 0;
+}
+form .form-row .input-data{
+  width: 100%;
+  height: 40px;
+  margin: 0 20px;
+  position: relative;
+}
+form .form-row .textarea{
+  height: 70px;
+}
+.input-data input,
+.textarea textarea{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid rgba(0,0,0, 0.12);
+}
+.input-data input:focus ~ label, .textarea textarea:focus ~ label,
+.input-data input:valid ~ label, .textarea textarea:valid ~ label{
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #3498db;
+}
+.textarea textarea{
+  resize: none;
+  padding-top: 10px;
+}
+.input-data label{
+  position: absolute;
+  pointer-events: none;
+  bottom: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+.textarea label{
+  width: 100%;
+  bottom: 40px;
+  background: #fff;
+}
+.input-data .underline{
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+.input-data .underline:before{
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before,
+.textarea textarea:focus ~ .underline:before,
+.textarea textarea:valid ~ .underline:before{
+  transform: scale(1);
+}
+.submit-btn .input-data{
+  overflow: hidden;
+  height: 45px!important;
+  width: 25%!important;
+}
+.submit-btn .input-data .inner{
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  transition: all 0.4s;
+}
+.submit-btn .input-data:hover .inner{
+  left: 0;
+}
+.submit-btn .input-data input{
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 700px) {
+  .container .text{
+    font-size: 30px;
+  }
+  .container form{
+    padding: 10px 0 0 0;
+  }
+  .container form .form-row{
+    display: block;
+  }
+  form .form-row .input-data{
+    margin: 35px 0!important;
+  }
+  .submit-btn .input-data{
+    width: 40%!important;
+  }
+}
+.but{
+  display:none;
+}
+</style>
+
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Buy-Now</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <div class="dropdown" style="position:fixed;top:0" >                
+ <bold  class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Payment-Method</bold>
+                    <br>
+                
+             
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li id="cashs"><a class="dropdown-item" href="#">Cash-On-Delivery</a></li>
+    <li id="ons"><a class="dropdown-item" href="#" >Stripe</a></li>
+    <li id="onstwo"><a class="dropdown-item" href="#" >Razor-Pay</a></li>
+
+  </ul>
+</div>
+   </head>
+   <body>
+        
+ 
+      <div class="container but" id="buts">
+
+        <div class="text"><%=prod.Name%></div>
+        <form action="/buy/<%=prod._id%>/1www33ee" method="POST" >
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="text" name="first" required>
+                 <div class="underline"></div>
+                 <label for="">First Name</label>
+              </div>
+              <div class="input-data">
+                 <input type="text" name="last" required>
+                 <div class="underline"></div>
+                 <label for="">Last Name</label>
+              </div>
+           </div>
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="text" name="landmark" required>
+                 <div class="underline"></div>
+                 <label for="">Landmark</label>
+              </div>
+              <div class="input-data">
+                 <input type="number" name="road" required>
+                 <div class="underline"></div>
+                 <label for="">Road-Number</label>
+              </div>
+            <div class="input-data">
+                 <input type="text" name="locality"required>
+                 <div class="underline"></div>
+                 <label for="">Locality</label>
+              </div>
+            <div class="input-data">
+                 
+                 <input type="text" name="city" required>
+
+                 <div class="underline"></div>
+                 <label for="">City</label>
+              </div>
+            <div class="input-data">
+                 
+                 <input type="number" name="phone" required>
+
+                 <div class="underline"></div>
+                 <label for="">Phone-Number</label>
+              </div>
+           </div>
+           <div class="form-row">
+              <div class="input-data textarea">
+                  <input type="hidden" name="qty"   value="<%=qty%>" required>
+                  <%if(size){%>
+                           <input type="hidden" name="size"   value="<%=size%>" required>
+                        <%}%>
+
+                                   <input type="hidden" id="methodone" name="method" required>
+ 
+
+ 
+                 
+                <br>  
+                
+               <div>
+               <script 
+                   src="//checkout.stripe.com/v2/checkout.js"
+                   class="stripe-button"
+                   data-key="<%= key %>"
+                   data-amount="<%=amount%>"
+                   data-currency="inr" 
+                   data-name="<%=currentUser.name%>"
+                   data-description="<%=prod.Name%>"
+                   data-locale="auto" > 
+        
+       
+        </script> 
+                </div>
+                 </div>
+              </div>
+           </div>
+        </form>
+     </div>
+   <div class="container but"  id="butsone">
+        <div class="text but"><%=prod.Name%></div>
+        <form action="/buy/<%=prod._id%>/1www33ee" method="POST">
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="text" name="first" required>
+                 <div class="underline"></div>
+                 <label for="">First Name</label>
+              </div>
+              <div class="input-data">
+                 <input type="text" name="last" required>
+                 <div class="underline"></div>
+                 <label for="">Last Name</label>
+              </div>
+           </div>
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="text" name="landmark" required>
+                 <div class="underline"></div>
+                 <label for="">Landmark</label>
+              </div>
+              <div class="input-data">
+                 <input type="number" name="road" required>
+                 <div class="underline"></div>
+                 <label for="">Road-Number</label>
+              </div>
+            <div class="input-data">
+                 <input type="text" name="locality"required>
+                 <div class="underline"></div>
+                 <label for="">Locality</label>
+              </div>
+            <div class="input-data">
+                 
+                 <input type="text" name="city" required>
+
+                 <div class="underline"></div>
+                 <label for="">City</label>
+              </div>
+            <div class="input-data">
+                 
+                 <input type="number" name="phone" required>
+
+                 <div class="underline"></div>
+                 <label for="">Phone-Number</label>
+              </div>
+           </div>
+           <div class="form-row">
+              <div class="input-data textarea">
+                  <input type="hidden" name="qty"  value="<%=qty%>" required>
+                                    <%if(size){%>
+                               <input type="hidden" name="size"   value="<%=size%>" required>
+                           <%}%>
+                                   <input type="hidden" id="methodtwo" name="method" required>
+ 
+
+ 
+                 
+                <br>  
+                <div >
+
+                 <div class="form-row submit-btn">
+                    <div class="input-data" >
+                       <div class="inner"></div>
+                       
+                       <input type="submit" value="submit">
+                    </div>
+                 </div>
+         </div>
+              
+                 </div>
+              </div>
+        </form>
+           </div>
+       
+     
+     
+
+<div class="container but"  id="butstwo">
+        <div class="text but"><%=prod.Name%></div>
+        <form action="/razor/<%=prod._id%>/1www33ee" method="POST">
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="text" name="first" required>
+                 <div class="underline"></div>
+                 <label for="">First Name</label>
+              </div>
+              <div class="input-data">
+                 <input type="text" name="last" required>
+                 <div class="underline"></div>
+                 <label for="">Last Name</label>
+              </div>
+           </div>
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="text" name="landmark" required>
+                 <div class="underline"></div>
+                 <label for="">Landmark</label>
+              </div>
+              <div class="input-data">
+                 <input type="number" name="road" required>
+                 <div class="underline"></div>
+                 <label for="">Road-Number</label>
+              </div>
+            <div class="input-data">
+                 <input type="text" name="locality"required>
+                 <div class="underline"></div>
+                 <label for="">Locality</label>
+              </div>
+            <div class="input-data">
+                 
+                 <input type="text" name="city" required>
+
+                 <div class="underline"></div>
+                 <label for="">City</label>
+              </div>
+            <div class="input-data">
+                 
+                 <input type="number" name="phone" required>
+
+                 <div class="underline"></div>
+                 <label for="">Phone-Number</label>
+              </div>
+           </div>
+           <div class="form-row">
+              <div class="input-data textarea">
+                  <input type="hidden" name="qty"  value="<%=qty%>" required>
+                                   <%if(size){%>
+                                 <input type="hidden" name="size"   value="<%=size%>" required>
+                               <%}%>
+                                   <input type="hidden" id="methods" name="method" required>
+ 
+
+ 
+                 
+                <br>  
+                <div >
+
+                 <div class="form-row submit-btn">
+                    <div class="input-data" >
+                       <div class="inner"></div>
+                       
+                       <input type="submit" value="Pay-Now">
+                    </div>
+                 </div>
+         </div>
+              
+                 </div>
+              </div>
+        </form>
+           </div>
+
+
+
+     </div>
+    
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js">
+</script>
+<script type="text/javascript">
+   
+  
+  
+  $("#cashs").click(function(){
+    $("#butsone").removeClass("but")
+    $("#buts").addClass("but")
+    $("#butstwo").addClass("but")
+
+    $("#methodtwo").val("Cash-On-Delivery")
+    $("#dropdownMenuButton1").text("Cash-On-Delivery")
+  })
+  $("#ons").click(function(){
+    $("#butsone").addClass("but")
+        $("#butstwo").addClass("but")
+
+    $("#buts").removeClass("but")
+    $("#methodone").val("Stripe")
+    $("#dropdownMenuButton1").text("Stripe")
+
+
+  })
+  $("#onstwo").click(function(){
+    $("#butsone").addClass("but")
+    $("#butstwo").removeClass("but")
+        $("#buts").addClass("but")
+
+    $("#methods").val("razorpay")
+    $("#dropdownMenuButton1").text("Razor-Pay")
+
+
+  })
+
+</script>
+   </body>
+    
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>

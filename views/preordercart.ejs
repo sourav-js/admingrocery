@@ -1,0 +1,512 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js">
+</script>
+<style type="text/css">
+.point:hover{
+    transform:scale(1.2);
+  transition:all .5s ease;
+}
+
+.point:hover{
+  transform:scale(1.2);
+  transition:all .5s ease;
+}
+[19:39, 09/12/2021] Gargi: footer{
+    background: var(--ternary);
+    padding: 4rem 0;
+}
+
+footer .container{
+    display:flex;
+    color:var(--footer);
+}
+footer .box{
+    flex:1;
+    margin-right:2rem;
+    text-align: center;
+}
+footer .gallery-api img{
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+footer .gallery-api .post-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+footer .gallery-api .post-wrap > div{
+    width: calc(1/3*100% - (1 - 1/3)*10px);
+    margin-bottom: 10px;
+}
+footer .box ul{
+    list-style-type: none;
+
+}
+footer .box ul li a{
+    color: var(--footer);
+    text-decoration: none;
+    transition: all .4s ease;
+}
+footer .box ul li a:hover{
+    color: var(--light);
+}
+footer .boxh3{
+    border-bottom: 1px solid var(--light);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+[19:40, 09/12/2021] Gargi: @font-face {
+    font-family: "Roboto-Regular";
+    src:url(../fonts/Roboto-Regular.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-medit";
+    src:url(../fonts/Roboto-MediumItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-thit";
+    src:url(../fonts/Roboto-ThinItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-liit";
+    src:url(../fonts/Roboto-LightItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-med";
+    src:url(../fonts/Roboto-Medium.ttf)
+}
+/colors/
+
+:root{
+    --primary:#175c0e;
+    --secodery:#232B38;
+    --ternary:#adadad;
+    --danger:#FE4545;
+    --violate:rgb(47, 42, 68);
+    --pure:#94f76d;
+    --light:#F0F0F0;
+    --heaven:#b5ff8a;
+    --footer:#35373b;
+}
+
+body{
+  background:url("data:image/jpeg;base64,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")
+}
+
+.but{
+  display:none
+}
+</style>
+
+
+<div class="container">
+<% if(error && error.length>0){%>
+<div class="alert alert-danger">
+<%=error %>
+</div>
+<% } %>
+<% if(success && success.length>0){%>
+<div class="alert alert-success">
+<%=success %>
+</div>
+<% } %>
+</div>
+<br>
+
+<title>Select Or Update Location!</title>
+
+<head>
+ 
+
+ <div class="dropdown"  align="center">                
+ <bold  class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Payment-Method</bold>
+                    <br>
+                
+             
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li id="cashs"><a class="dropdown-item" href="#">Cash-On-Delivery</a></li>
+    <li id="ons"><a class="dropdown-item" href="#" >Stripe</a></li>
+    <li id="onstwo"><a class="dropdown-item" href="#" >Razor-Pay</a></li>
+
+  </ul>
+</div>
+</head>
+
+<div style="padding-left:20px;padding-top:20px" id="butstwo" class="but">  
+
+<div style="padding-top:50px;padding-left:30px;padding-bottom:100px">
+  <div class="container">
+  <div class="row">
+    
+  
+     <%preord.forEach(function(data){%>
+           
+
+     
+          <div class="col-lg-4 col-sm-12 image" ><div style="width:300px;padding-top:25px"><div style="box-shadow:1px 2px  7px black;border-radius:10px" class="img-thumbnail"  align="center">
+              <div style="padding-bottom:20px;"><b class="btn btn-warning btn-block">Use-This-Adress   <a href="/updateOrders/<%=data._id%>" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"></i> </a></b></div>
+        <div align="center">
+       <b "><b class="btn btn-sm btn-success">Full-Name </b><br><%=data.name%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">City </b><br><%=data.city%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">Locality </b><br><%=data.locality%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">Road-Number </b><br><%=data.roadNumber%></b>
+         <hr>
+        <b><b class="btn btn-sm btn-success">landMark </b><br><%=data.landmark%></b>
+         <hr>
+        <b><b class="btn btn-sm btn-success">Phone </b><br><%=data.phone%></b>
+      
+        <form action="/razorcart/<%=data._id%>" method="POST">
+    
+                           <input type="hidden" name="qty"   value="<%=qty%>" required>
+                  <input type="hidden" name="first" value=<%=data.first%> required>
+
+                 <input type="hidden" name="last" value=<%=data.last%> required>
+
+                 <input type="hidden" name="landmark" value="<%=data.landmark%>" required>
+
+                 <input type="hidden" name="road" value="<%=data.roadNumber%>" required>
+
+                 <input type="hidden" name="locality"  value="<%=data.locality%>" required>
+
+                 <input type="hidden" name="city" value="<%=data.city%>" required>
+
+                 <input type="hidden" name="phone"  value=<%=data.phone%> required>
+                                 <input type="hidden" class="method" name="method" required>
+
+              <div style="transform:translateY(20px)">  
+              <button class="btn btn-block btn-info">Pay-Now</button>
+              </div>
+        </form>
+
+       
+
+
+       </div>
+        
+
+
+        </div>
+       
+       </div>
+
+       </div>
+<%})%>
+
+    </div>
+    
+   
+  </div>
+</div>
+
+
+    
+   
+</div>
+
+
+
+
+
+
+
+
+<div style="padding-left:20px;padding-top:20px" id="butsone" class="but">  
+
+<div style="padding-top:50px;padding-left:30px;padding-bottom:100px">
+  <div class="container">
+  <div class="row">
+    
+  
+     <%preord.forEach(function(data){%>
+           
+
+     
+          <div class="col-lg-4 col-sm-12 image" ><div style="width:300px;padding-top:25px"><div style="box-shadow:1px 2px  7px black;border-radius:10px" class="img-thumbnail"  align="center">
+              <div style="padding-bottom:20px;"><b class="btn btn-warning btn-block">Use-This-Adress   <a href="/updateOrders/<%=data._id%>" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"></i> </a></b></div>
+        <div align="center">
+       <b "><b class="btn btn-sm btn-success">Full-Name </b><br><%=data.name%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">City </b><br><%=data.city%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">Locality </b><br><%=data.locality%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">Road-Number </b><br><%=data.roadNumber%></b>
+         <hr>
+        <b><b class="btn btn-sm btn-success">landMark </b><br><%=data.landmark%></b>
+         <hr>
+        <b><b class="btn btn-sm btn-success">Phone </b><br><%=data.phone%></b>
+      
+        <form action="/allbuy/<%=data._id%>" method="POST">
+    
+                           <input type="hidden" name="qty"   value="<%=qty%>" required>
+                  <input type="hidden" name="first" value=<%=data.first%> required>
+
+                 <input type="hidden" name="last" value=<%=data.last%> required>
+
+                 <input type="hidden" name="landmark" value=<%=data.landmark%> required>
+
+                 <input type="hidden" name="road" value=<%=data.roadNumber%> required>
+
+                 <input type="hidden" name="locality"  value=<%=data.locality%> required>
+
+                 <input type="hidden" name="city" value=<%=data.city%> required>
+
+                 <input type="hidden" name="phone"  value=<%=data.phone%> required>
+                                 <input type="hidden" class="method" name="method" required>
+
+              <div style="transform:translateY(20px)">  
+              <button class="btn btn-block btn-info">Place-Order</button>
+              </div>
+        </form>
+
+       
+
+
+       </div>
+        
+
+
+        </div>
+       
+       </div>
+
+       </div>
+<%})%>
+
+    </div>
+    
+   
+  </div>
+</div>
+
+
+    
+   
+</div>
+
+<div style="padding-left:20px;padding-top:20px" id="buts" class="but">  
+
+<div style="padding-top:50px;padding-left:30px;padding-bottom:100px">
+  <div class="container">
+  <div class="row">
+    
+  
+     <%preord.forEach(function(data){%>
+           
+
+          <div class="col-lg-4 col-sm-12 image" >
+
+          <div style="width:300px;padding-top:25px"><div style="box-shadow:1px 2px  7px black;border-radius:10px" class="img-thumbnail"  align="center">
+              <div style="padding-bottom:20px;"><b class="btn btn-warning btn-block">Use-This-Adress           <a href="/updateOrders/<%=data._id%>" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"></i> </a>    
+           </b></div>
+        <div align="center">
+       <b "><b class="btn btn-sm btn-success">Full-Name </b><br><%=data.name%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">City </b><br><%=data.city%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">Locality </b><br><%=data.locality%></b>
+        <hr>
+        <b><b class="btn btn-sm btn-success">Road-Number </b><br><%=data.roadNumber%></b>
+         <hr>
+        <b><b class="btn btn-sm btn-success">landMark </b><br><%=data.landmark%></b>
+         <hr>
+        <b><b class="btn btn-sm btn-success">Phone </b><br><%=data.phone%></b>
+      
+        <form action="/allbuy/<%=data._id%>" method="POST">
+    
+                           <input type="hidden" name="qty"   value="<%=qty%>" required>
+                  <input type="hidden" name="first" value=<%=data.first%> required>
+
+                 <input type="hidden" name="last" value=<%=data.last%> required>
+
+                 <input type="hidden" name="landmark" value=<%=data.landmark%> required>
+
+                 <input type="hidden" name="road" value=<%=data.roadNumber%> required>
+
+                 <input type="hidden" name="locality"  value=<%=data.locality%> required>
+
+                 <input type="hidden" name="city" value=<%=data.city%> required>
+
+                 <input type="hidden" name="phone"  value=<%=data.phone%> required>
+                                 <input type="hidden" class="method" name="method" required>
+
+
+               <script 
+                   src="//checkout.stripe.com/v2/checkout.js"
+                   class="stripe-button"
+                   data-key="<%= key %>"
+                   data-amount="<%=currentUser.sum%>"
+                   data-currency="inr" 
+                   data-name="<%=currentUser.name%>"
+                   data-description="<%=prod.Name%>"
+                   data-locale="auto" > 
+        
+       
+        </script> 
+
+        </form>
+
+       
+
+
+       </div>
+        
+
+
+        </div>
+       
+       </div>
+
+       </div>
+<%})%>
+
+    </div>
+    
+   
+  </div>
+</div>
+
+
+    
+   
+</div>
+
+<div style="transform:translateY(100px);padding-bottom:37px">
+<footer style="background:lightgrey;">
+        <div class="container">
+            <div class="box">
+                <h3><em>About Us</em></h3>
+                <p><b>groceryJI is revolutionising e-commerce by
+                 making the stuff most important to you, available
+                  to you in a blink of your eye. We are here to get your chores out of your way.</b></p>
+                  <a href="/allProduct"><button class="btn btn-success">GroceryJi</button></a>
+                
+            </div>
+            <div class="box">
+                <h3><em>Links</em></h3>
+                <ul><b>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About us</a>
+                    </li>
+                    <li>
+                        <a href="#">Blogs</a>
+                    </li>
+                    <li>
+                        <a href="#">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact us</a>
+                    </li>
+                </b></ul>
+            </div>
+            <div class="box">
+                
+            </div>
+            <div class="box gallery-api">
+                <h3>Folllow us</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                            <span>facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fas fa-envelope"></i>
+                            <span>e-mail</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fab fa-instagram"></i>
+                            <span>instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fab fa-twitter"></i>
+                            <span>twitter</span>
+                        </a>
+                    </li>
+                </ul>
+        </div>
+    </footer>
+    </div>
+<div>
+<form action="/allbuy" method="GET">
+ <input type="hidden" name="new" value="1">
+
+ <button style="position:fixed;bottom:0;" class="btn btn-block btn-success">Add-New-Adress</button>
+</form>
+</div>
+
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js">
+</script>
+<script type="text/javascript">
+   
+  
+  
+  $("#cashs").click(function(){
+     $("#butsone").removeClass("but")
+    $("#buts").addClass("but")
+    $("#butstwo").addClass("but")
+
+    $(".method").val("Cash-On-Delivery")
+    $("#dropdownMenuButton1").text("Cash-On-Delivery")
+  })
+  $("#ons").click(function(){
+     $("#butsone").addClass("but")
+    $("#buts").removeClass("but")
+     $("#butstwo").addClass("but")
+
+    $(".method").val("Stripe")
+    $("#dropdownMenuButton1").text("Stripe")
+
+
+  })
+
+ $("#onstwo").click(function(){
+     $("#butsone").addClass("but")
+    $("#buts").addClass("but")
+    $("#butstwo").removeClass("but")
+
+    $(".method").val("razorpay")
+    $("#dropdownMenuButton1").text("Razor-Pay")
+
+
+  })
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>

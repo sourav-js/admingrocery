@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title><%=users.name%></title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+ <style type="text/css">
+    
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+  padding: 50px;
+  text-align: center;
+  background:black;
+}
+.container{
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.3);
+  background: linear-gradient(45deg, #7b00e0, #ae31d9);
+}
+.container:hover{
+  height: 470px;
+  width: 350px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 35px 0px rgba(0,0,0,0.3);
+}
+.container .wrapper img{
+  position: relative;
+  z-index: 20;
+  border-radius: 50%;
+  display: block;
+  height: 200px;
+  width: 200px;
+  border: 5px solid #fff;
+  object-fit: cover;
+  margin: 20px auto;
+  transition: all 0.3s ease;
+}
+.container:hover .wrapper img.active{
+  height: 470px;
+  width: 350px;
+  margin: 0px auto;
+  border: none;
+  border-radius: 5px;
+}
+.wrapper .title{
+  color: #fff;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 10px;
+  line-height: 25px;
+}
+.wrapper .place{
+  color: #fff;
+  font-size: 17px;
+  line-height: 0px;
+  margin: 10px 0;
+}
+.content{
+  color: #fff;
+  font-size: 17px;
+  margin-top: 10px;
+  padding: 1px 20px 10px 20px!important;
+}
+.content .buttons{
+  display: flex;
+}
+.buttons .btn{
+  height: 40px;
+  width: 150px;
+  margin: 0 5px;
+}
+.buttons .btn button{
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.btn button:hover{
+  transform: scale(0.95);
+}
+.container .icons{
+  position: relative;
+  margin-top: -435px;
+  margin-left: 10px;
+  list-style: none;
+}
+.container .icons.active{
+  display: none;
+}
+.container .icons li{
+  height: 40px;
+  width: 40px;
+  margin: 5px 0;
+  opacity: 0;
+  margin-left: -100px;
+  transition: all 0.5s ease;
+}
+.container:hover .icons li{
+  opacity: 1;
+  margin-left: 7px;
+}
+.container:hover .icons li:nth-child(2){
+  transition-delay: 0.2s;
+}
+.container:hover .icons li:nth-child(3){
+  transition-delay: 0.4s;
+}
+.container .icons li a{
+  color: #7b00e0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background: #fff;
+  display: block;
+  line-height: 40px;
+  transition: all 0.3s;
+}
+.container .icons li a:hover{
+  transform: scale(0.9);
+}
+    
+ </style>
+
+   </head>
+   <body>
+   
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%=users.name%></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/updateprofile/<%=users._id%>" method="POST">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">first:</label>
+            <input type="text" class="form-control" name="first" value="<%=users.first%>"  required>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">last:</label>
+            <input type="text" class="form-control" name="last" value="<%=users.last%>"  required>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">@email:</label>
+            <input type="text" class="form-control" name="username" id="usere" value="<%=users.username%>" required>
+          </div>
+         <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <input type="number" class="form-control" name="phone" value="<%=users.phone%>"  required> 
+          </div>
+        
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Age:</label>
+            <input type="number" class="form-control" name="age" value="<%=users.age%>"  required> 
+          </div>
+          
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">locality:</label>
+            <input type="text" class="form-control" name="local" value="<%=users.locality%>"  required> 
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">city:</label>
+            <input type="text" class="form-control" name="city" value="<%=users.city%>"  required> 
+          </div>
+
+         <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">road-no:</label>
+            <input type="number" class="form-control" name="road" value="<%=users.road%>"  required> 
+          </div>
+
+
+
+
+        <button  class="btn btn-primary">Update</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+      <div class="container">
+         <div class="wrapper">
+            <a href="#">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="">
+            </a>
+            <div class="title">
+               <b><em><%=users.name%></em></b>
+            </div>
+            <div class="place">
+               <b><%=users.username%></b>
+            </div>
+           <br>
+         <div class="place">
+               <b><%=users.phone%></b>
+            </div>
+        
+         
+        
+      
+        
+        <b>token ID</b>
+         <div class="place">
+              <br>
+               <b><%=users.token%></b>
+            </div>
+        
+        <b>Admin ID</b>
+         <div class="place">
+              <br>
+               <b><%=users._id%></b>
+            </div>
+
+         </div>
+         
+         <div class="content">
+            
+            <div class="buttons">
+               <div class="btn" align="center">
+                  
+                  <button  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-edit"></i></button>
+               </div>
+               
+            </div>
+         </div>
+         <div class="icons">
+           
+         </div>
+      </div>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js">
+</script> 
+      <script type="text/javascript">
+         const img = document.querySelector("img");
+         const icons = document.querySelector(".icons");
+         img.onclick = function(){
+           this.classList.toggle("active");
+           icons.classList.toggle("active");
+         }
+     
+         
+      </script>
+   </body>
+</html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>

@@ -1,0 +1,315 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js">
+</script>
+
+<button style="border:none"  class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fas fa-bars" style="font-size:50px;text-decoration:none" ></i></button>
+
+<div  class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+ 
+</div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>.....</p>
+  </div>
+</div>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+<div class="offcanvas-body">
+  
+ <div class="dropdown mt-3">
+      <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+      Orders-Of
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="/month/January">January</a></li>
+        <li><a class="dropdown-item" href="/month/February">February</a></li>
+        <li><a class="dropdown-item" href="/month/March">March</a></li>
+      <li><a class="dropdown-item" href="/month/April">April</a></li>
+        <li><a class="dropdown-item" href="/month/May">May</a></li>
+        <li><a class="dropdown-item" href="/month/June">June</a></li>
+        <li><a class="dropdown-item" href="/month/July">July</a></li>
+        <li><a class="dropdown-item" href="/month/August">August</a></li>
+        <li><a class="dropdown-item" href="/month/September">September</a></li>
+        <li><a class="dropdown-item" href="/month/October">October</a></li>
+        <li><a class="dropdown-item" href="/month/November">November</a></li>
+        <li><a class="dropdown-item" href="/month/December">December</a></li>
+      </ul>
+    </div>
+    
+  </div>
+
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+   <br>
+
+ <%if(currentUser){%>
+<div class="dropdown" style="transform:translateX(20px)">
+  <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" align="center">
+User
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="/myprofile/<%=currentUser._id%>"><b><%=currentUser.first%></b></a></li>
+    <li><a class="dropdown-item" href="/forgot"><b>Change-Password</b></a></li>
+
+    <li><a class="dropdown-item" href="/logout"><i class="fas fa-power-off" style="color:red"></i></a></li>
+  </ul>
+</div>
+
+   <br>
+<%}%>   
+  <div class="offcanvas-body">
+      <div><a  class="btn btn-outline-success" href="/vip" style="color:black;text-decoration:none;"><h6><b> VIP-Accounts</b></h6></a></div>
+    
+  </div>
+
+
+  <div class="offcanvas-body">
+      <div><a class="btn btn-outline-danger" href="/allcancelOrders/Canceled" style="color:black;text-decoration:none;">Canceled-Orders</a></div>
+    
+  </div>
+
+ 
+ <div class="offcanvas-body">
+      <div><a  class="btn btn-outline-success" href="/allcancelOrders/Delivered" style="color:black;text-decoration:none;"><h6><b> Delivered-Orders</b></h6></a></div>
+    
+  </div>
+
+<div class="offcanvas-body">
+      <div><a  class="btn btn-outline-success" href="/groceryProduct" style="color:black;text-decoration:none;">        
+<h6><b> All-Product-Status</i></b></h6></a></div>
+    
+  
+
+  </div>
+
+
+
+
+<div class="offcanvas-body">
+    
+   <div><a   href="/outof" class="btn btn-outline-danger" style="color:black;text-decoration:none;"><b><h6> Out-Of-Stock-Products</b></h6></a></div>
+    
+  </div>
+<div class="offcanvas-body">
+    
+   <div style="width:300px">
+  
+    <form  action="/" method="GET" id="forms"> 
+        <input class="form-control me-2"  id="inputs" class="form-control" type="search" placeholder="Customer Name" value="<%=search%>" name="search" aria-label="Search">
+        <br>
+      </form>
+
+   </div>
+    
+  </div>
+
+<div class="offcanvas-body">
+    
+   <div><a style="text-decoration:none;color:black" class="btn btn-success"><b><h6>total-order <i class="fas fa-rupee-sign"> <%=totalSum%></i></b></h6></a></div>
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<title>All-Orders</title>
+<br>
+<div class="container">
+<% if(error && error.length>0){%>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<%=error %>
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+<% if(success && success.length>0){%>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+
+<%=success %>
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+<% } %>
+</div>
+<br>
+<table class="table" style="padding-top:50px">
+<%if(orders.length>0){%>   
+     <%orders.forEach(function(data){%>
+
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+     
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Road</th>
+      <th scope="col">Locality</th>
+      <th scope="col">City</th>
+      <th scope="col">Landmark</th>
+
+
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+       <%if(data.leters){%>
+            <th scope="col">Size</th>
+
+      <%}%>
+      <th scope="col">Quantity</th>
+      <th scope="col">Pay</th>
+
+       <th scope="col">Date</th>
+       <th scope="col">Status</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><i class="fas fa-hand-point-right"></i></th>
+     <%if (data.urls=="URL"){%>
+
+       <td><a href="https://groceryji.com/moreinfo/<%=data.pid%>"><img src="<%=data.image%>" style="width:50px"></a></td>
+     <%}else{%>
+       <td><a href="https://groceryji.com/moreinfo/<%=data.pid%>"><img src="/<%=data.image%>" style="width:50px"></a></td>
+
+     <%}%>
+      <td><%=data.name%></td>
+      <td><%=data.author.username%></td>
+      <td><%=data.phone%></td>
+      <td><%=data.roadNumber%></td>
+      <td><%=data.locality%></td>
+      <td><%=data.city%></td>
+      <td><%=data.landmark%></td>
+      
+      <td><%=data.productD%></td>
+      <td><%=data.Price%></td>
+      <%if(data.leters){%>
+       <td><%=data.leters%></td>
+       <%}%>
+      <td><%=data.qty%></td>
+      <td><%=data.pay%></td>
+
+      <td><%=data.date.toLocaleString("en-UN")%></td>
+      <td>
+	      <div class="dropdown">
+			  <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+			  Update
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+			  <%if (data.update!=="Delivered"){%>
+ 
+			    <%if (data.update!=="Canceled"){%>
+			     <li disabled><a class="dropdown-item" href="/statusChange/<%=data._id%>/Canceled">Cancel</a></li>
+			    <%}else if (data.update=="Canceled"){%>
+                    
+                    <li><a class="dropdown-item" class="btn btn-sm btn-danger">Canceled</a></li>
+
+                 <%}%>
+			  	<%}%>
+
+              <%if(data.update!=="Canceled"){%>  
+
+			  			    <%if (data.shipped!=="Shipped"){%>
+  
+			    <li><a class="dropdown-item" href="/statusChange/<%=data._id%>/Shipped">Shipped</a></li>
+			    <%}else{%>
+			    <li><a class="dropdown-item" href="">Shipped Already</a></li>
+
+			    <%}%>
+                
+                <%if (data.outfor!=="Out-For-Delivery"){%>
+  
+			       <li><a class="dropdown-item" href="/statusChange/<%=data._id%>/Out-For-Delivery">Out-For-Delivery</a></li>
+			      <%}else{%>
+			      <li><a class="dropdown-item" href="">Out-For-Delivery-Already</a></li>
+                <%}%>
+			   <%if (data.update!=="Delivered"){%>
+  
+			       <li><a class="dropdown-item" href="/statusChange/<%=data._id%>/Delivered">Delivered</a></li>
+			      <%}else{%>
+			      <li><a class="dropdown-item" href="">Delivered-Already</a></li>
+                <%}%>
+            <%}%>
+
+			  </ul>
+		</div>
+</td>
+
+    </tr>
+  </tbody>
+  <%})%>  
+<%}else{%>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+     
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Road No</th>
+      <th scope="col">Locality</th>
+      <th scope="col">City</th>
+      <th scope="col">Landmark</th>
+
+
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      
+      <th scope="col">Quantity</th>
+      <th scope="col">Pay</th>
+
+       <th scope="col">Date</th>
+       <th scope="col">Status</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><i class="fas fa-hand-point-right"></i></th>
+      <b>No Customer Found!</b>
+
+    </tr>
+  </tbody>
+<%}%>
+</table>
+<script type="text/javascript"> 
+ $(document).ready(function(){
+   $("#inputs").on('keyup',function(e){
+       
+    if(e.key!=="Backspace" && e.key!=="Control" && e.key!=="ArrowRight" && e.key!=="ArrowLeft" && e.key!=="ArrowDown" && e.key!=="ArrowUp"){ 
+     if($("#inputs").val().length>0){
+      $("#forms").submit()
+       
+      }
+     }
+   })
+    
+ })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

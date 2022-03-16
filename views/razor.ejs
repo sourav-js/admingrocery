@@ -1,0 +1,380 @@
+
+
+
+
+
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="style.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title><%=prod.Name%></title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js">
+</script>
+
+   </head>
+   
+   <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html,body{
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+}
+::selection{
+  background: #fa4299;
+  color: #fff;
+}
+.wrapper{
+  overflow: hidden;
+  max-width: 390px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+.wrapper .title-text{
+  display: flex;
+  width: 200%;
+}
+.wrapper .title{
+  width: 50%;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.wrapper .slide-controls{
+  position: relative;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  margin: 30px 0 10px 0;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+.slide-controls .slide{
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.6s ease;
+}
+.slide-controls label.signup{
+  color: #000;
+}
+.slide-controls .slider-tab{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  z-index: 0;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+input[type="radio"]{
+  display: none;
+}
+#signup:checked ~ .slider-tab{
+  left: 50%;
+}
+#signup:checked ~ label.signup{
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+#signup:checked ~ label.login{
+  color: #000;
+}
+#login:checked ~ label.signup{
+  color: #000;
+}
+#login:checked ~ label.login{
+  cursor: default;
+  user-select: none;
+}
+.wrapper .form-container{
+  width: 100%;
+  overflow: hidden;
+}
+.form-container .form-inner{
+  display: flex;
+  width: 200%;
+}
+.form-container .form-inner form{
+  width: 50%;
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.form-inner form .field{
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+.form-inner form .field input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+.form-inner form .field input:focus{
+  border-color: #fc83bb;
+  /* box-shadow: inset 0 0 3px #fb6aae; */
+}
+.form-inner form .field input::placeholder{
+  color: #999;
+  transition: all 0.3s ease;
+}
+form .field input:focus::placeholder{
+  color: #b3b3b3;
+}
+.form-inner form .pass-link{
+  margin-top: 5px;
+}
+.form-inner form .signup-link{
+  text-align: center;
+  margin-top: 30px;
+}
+.form-inner form .pass-link a,
+.form-inner form .signup-link a{
+  color: #fa4299;
+  text-decoration: none;
+}
+.form-inner form .pass-link a:hover,
+.form-inner form .signup-link a:hover{
+  text-decoration: underline;
+}
+form .btn{
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+form .btn .btn-layer{
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+  border-radius: 5px;
+  transition: all 0.4s ease;;
+}
+form .btn:hover .btn-layer{
+  left: 0;
+}
+form .btn input[type="submit"]{
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background: none;
+  border: none;
+  color: #fff;
+  padding-left: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+   </style>
+   <body>
+      
+
+      <div class="container">
+<% if(error && error.length>0){%>
+<div class="alert alert-danger">
+<%=error %>
+</div>
+<% } %>
+<% if(success && success.length>0){%>
+<div class="alert alert-success">
+<%=success %>
+</div>
+<% } %>
+</div>
+ 
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title login">
+               Pay
+            </div>
+           
+         </div>
+         <div class="form-container">
+            
+                  <div class="field">
+                     <input type="text" placeholder="Amount" value=<%=amount%> id="order-amt" required>
+                  </div>
+                 
+                  <div class="field btn" >
+                     <div class="btn-layer"></div>
+                     <input type="submit"   value="Get-Order-Id" class="btn btn-sm btn-success" style="transform:translateX(100px)" id="order-button1">
+                  </div>
+               <div class="field">
+                     <input type="text" placeholder="Order-Id" class="form-control" id="rzp-text" required>
+                  </div>
+               
+              <form>
+               <br>
+               <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Check-Out" id="rzp-button1">
+                  </div>
+               </form>
+               <br> 
+                 <form action="/buy/<%=prod._id%>/<%=loc%>" method="POST">
+                   
+                    <label>    </label><input type=text placeholder="order-id" class="form-control" id=order-id required/>
+                    <br/>
+                    <label>  </label><input type=text   placeholder="order-pay-id" class="form-control"  id=order-pay-id required/>
+                    <br/>
+                    <label>  </label><input type=text  placeholder="order-sig" class="form-control"  id=order-sig required/>
+
+                 <%if(size){%>
+
+                 <input type="hidden"   name="size" value="<%=size%>"  required>
+
+
+                 <%}%> 
+
+                 <input type="hidden"   name="qty" value="<%=quantity%>" id="quan" required>
+                  <input type="hidden"  name="first" value="<%=first%>"  id="first" required>
+
+                 <input type="hidden"  name="last" value="<%=last%>"id="last" required>
+
+                 <input type="hidden"  name="landmark" value="<%=landmark%>" id="land" required>
+
+                 <input type="hidden"  name="road" value="<%=road%>" id="road" required>
+
+                 <input type="hidden" name="locality"  value="<%=locality%>" id="loca" required>
+
+                 <input type="hidden"  name="city" value="<%=city%>" id="city" required>
+
+                 <input type="hidden"   name="phone" value="<%=phone%>" id="phone" required>
+                                 <input type="hidden" name="method"  value="<%=method%>" id="method" required>
+                 
+                   <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Final-Verify" id="verify-button1">
+                  </div>
+             </form>
+            </div>
+
+         </div>
+      </div>
+    
+   
+
+<script>
+
+ document.getElementById('order-button1').onclick = function(e){
+        var url = '/api/payment/order';
+            var params = {
+          amount: document.getElementById('order-amt').value,  
+          currency: "INR",
+          receipt: "su001",
+          payment_capture: '1'
+        };
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function (res) {
+            if (xmlHttp.readyState === 4) {
+              res=JSON.parse(xmlHttp.responseText);
+              document.getElementById('rzp-text').value=res.sub.id;
+            }
+        }
+        xmlHttp.open("POST", url, true); // false for synchronous request
+        xmlHttp.setRequestHeader("Content-type", "application/json");
+        xmlHttp.send(JSON.stringify(params));
+        }
+
+</script>
+
+ <div id=paymentDetails></div>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script type="text/javascript">
+     
+    var option="<%=prod.urls%>"
+    if(option=="URL"){
+ 
+     var images="<%=prod.image%>"
+ 
+ }
+ else{
+
+          var images="/<%=prod.image%>"
+
+ }  
+    document.getElementById('rzp-button1').onclick = function(e){
+     
+
+        var options = {
+        "key": "rzp_test_fEiizHFA6gj75D",  //Enter your razorpay key
+        "currency": "INR",
+        
+        "description": "<%=prod.Name%>",
+        
+        
+          "image":images,  
+       
+        
+        "order_id": document.getElementById('rzp-text').value,
+        "handler": function (response){
+            document.getElementById('order-pay-id').value=response.razorpay_payment_id;
+     document.getElementById('order-id').value=response.razorpay_order_id;
+      document.getElementById('order-sig').value=response.razorpay_signature;
+        },
+       
+    };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+
+
+<script>
+document.getElementById('verify-button1').onclick = function(e){
+
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.onreadystatechange = function (res) {
+   
+
+xmlHttp.open("POST", url, true); // false for synchronous request
+xmlHttp.setRequestHeader("Content-type", "application/json");
+xmlHttp.send(JSON.stringify(params));
+}
+}
+</script>
+   </body>
+</html>
+
+
+

@@ -1,0 +1,175 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<style type="text/css">
+ .point:hover{
+	transform:scale(1.2);
+  transition:all .5s ease;
+}
+
+.point:hover{
+  transform:scale(1.2);
+  transition:all .5s ease;
+}
+[19:39, 09/12/2021] Gargi: footer{
+    background: var(--ternary);
+    padding: 4rem 0;
+}
+
+footer .container{
+    display:flex;
+    color:var(--footer);
+}
+footer .box{
+    flex:1;
+    margin-right:2rem;
+    text-align: center;
+}
+footer .gallery-api img{
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+footer .gallery-api .post-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+footer .gallery-api .post-wrap > div{
+    width: calc(1/3*100% - (1 - 1/3)*10px);
+    margin-bottom: 10px;
+}
+footer .box ul{
+    list-style-type: none;
+
+}
+footer .box ul li a{
+    color: var(--footer);
+    text-decoration: none;
+    transition: all .4s ease;
+}
+footer .box ul li a:hover{
+    color: var(--light);
+}
+footer .boxh3{
+    border-bottom: 1px solid var(--light);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+[19:40, 09/12/2021] Gargi: @font-face {
+    font-family: "Roboto-Regular";
+    src:url(../fonts/Roboto-Regular.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-medit";
+    src:url(../fonts/Roboto-MediumItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-thit";
+    src:url(../fonts/Roboto-ThinItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-liit";
+    src:url(../fonts/Roboto-LightItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-med";
+    src:url(../fonts/Roboto-Medium.ttf)
+}
+/colors/
+
+:root{
+    --primary:#175c0e;
+    --secodery:#232B38;
+    --ternary:#adadad;
+    --danger:#FE4545;
+    --violate:rgb(47, 42, 68);
+    --pure:#94f76d;
+    --light:#F0F0F0;
+    --heaven:#b5ff8a;
+    --footer:#35373b;
+}
+
+</style>
+
+
+<div align="center" style="padding-top:200px">
+<h6><b>No Product Found</b></h6>
+
+<br>
+<br>
+<a href="/allProduct" class="btn btn-lg btn-success">Search-Again</a>
+</div>
+<div style="transform:translateY(100px)">
+<footer style="background:lightgrey;">
+        <div class="container">
+            <div class="box">
+                <h3><em>About Us</em></h3>
+                <p><b>groceryJI is revolutionising e-commerce by
+                 making the stuff most important to you, available
+                  to you in a blink of your eye. We are here to get your chores out of your way.</b></p>
+                  <a href="/allProduct"><button class="btn btn-success">GroceryJi</button></a>
+                
+            </div>
+            <div class="box">
+                <h3><em>Links</em></h3>
+                <ul><b>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About us</a>
+                    </li>
+                    <li>
+                        <a href="#">Blogs</a>
+                    </li>
+                    <li>
+                        <a href="#">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact us</a>
+                    </li>
+                </b></ul>
+            </div>
+            <div class="box">
+                
+            </div>
+            <div class="box gallery-api">
+                <h3>Folllow us</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                            <span>facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fas fa-envelope"></i>
+                            <span>e-mail</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fab fa-instagram"></i>
+                            <span>instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fab fa-twitter"></i>
+                            <span>twitter</span>
+                        </a>
+                    </li>
+                </ul>
+        </div>
+    </footer>
+    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>

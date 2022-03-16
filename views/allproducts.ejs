@@ -1,0 +1,285 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color:white">AdminGroceryJi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <span class="btn btn-sm btn-outline-danger" ><a class="nav-link active" aria-current="page" href="/allcancelOrders/Canceled" style="color:white">Canceled-Orders</a></span>
+        </li>
+        <li class="nav-item" style="padding-left:10px">
+          <div class="btn btn-sm btn-outline-success"><a class="nav-link active "  aria-current="page" href="/allcancelOrders/Delivered" style="color:white">Delivered-Orders</a></div>
+        </li>
+        
+         <li class="nav-item" style="padding-left:10px">
+          <div class="btn btn-sm btn-outline-danger"><a class="nav-link active "  aria-current="page" href="/outof" style="color:white">Out-Of-Stock-Products</a></div>
+        </li>
+       <br>
+      <div style="transform:translateY(5px)"> 
+       <%if(currentUser){%>
+<div class="dropdown" style="transform:translateX(20px)">
+  <button class="btn btn-md btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" align="center">
+User
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="/myprofile/<%=currentUser._id%>"><b><%=currentUser.first%></b></a></li>
+    <li><a class="dropdown-item" href="/forgot"><b>Change-Password</b></a></li>
+
+    <li><a class="dropdown-item" href="/logout"><i class="fas fa-power-off" style="color:red"></i></a></li>
+  </ul>
+</div>
+
+   <br>
+<%}%> 
+</div>
+
+
+      </ul>
+      <form class="d-flex" action="/groceryProduct" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Product Name" name="search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<title>All-Product-Status</title>
+
+
+<br>
+<div class="container">
+<% if(error && error.length>0){%>
+<div class="alert alert-danger">
+<%=error %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+<% if(success && success.length>0){%>
+<div class="alert alert-success">
+<%=success %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+</div>
+<br>
+
+<div align='center'>
+<a href="/addProduct"><button class="btn btn-block btn-warning"><i class="fas fa-plus"></i>  Add-Product</button></a>
+</div>
+
+
+<table class="table" style="padding-top:70px">
+  <%if (prods!==0){%>  
+     <%prods.forEach(function(data){%>
+
+  <thead>
+    <tr>
+      <th scope="col"><i class="fab fa-product-hunt"></i></th>
+      <th scope="col">Image</th>
+     
+      <th scope="col">Name</th>
+     
+
+
+      <th scope="col">offPrice</th>
+      
+      <th scope="col">ActualPrice</th>
+     
+       <th scope="col">Offer</th>
+      <%if(data.key!=="mustards" && data.key!=="soyabeans"){%>
+
+        <th scope="col">Stock</th>
+      <%}else{%>
+        <th scope="col">1LStock</th>
+        <th scope="col">2LStock</th>
+
+      <%}%>
+       <%if(data.key!=="mustards" && data.key!=="soyabeans"){%>
+         <th scope="col">updateStock</th>
+       
+       <%}else{%>
+         <th scope="col">update1L</th>
+                  
+                  <th scope="col">update2L</th>
+  
+
+       <%}%>
+       
+       <th scope="col">updationDate</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><a href="/deleteProduct/<%=data._id%>"><i class="far fa-trash-alt" style="color:red"></i></a></th>
+     
+       <%if(data.urls=="URL"){%>
+        <td><a href="https://groceryji.com/moreinfo/<%=data._id%>"><img src="<%=data.image%>" style="width:50px"></a></td>
+       <%}else{%>
+             <td><a href="https://groceryji.com/moreinfo/<%=data._id%>"><img src="/<%=data.image%>" style="width:50px"></a></td>
+
+       <%}%>
+      <td style="word-break:break-word"><a href="/updateData/<%=data._id%>/name" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"></i></a> <%=data.Name%>  </td>
+
+      
+      <td><a href="/updateData/<%=data._id%>/price" style="padding-left:10px"> <i class="fas fa-edit" style="color:black;"> </i> </a> <%=data.Price%></td>
+      
+     
+      
+      <td><%=data.offer%>  <a href="/updateData/<%=data._id%>/offer" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"> </i> </a></td>
+      
+      <td><%=data.off%></td>
+      <%if(data.key!=="mustards" && data.key!=="soyabeans"){%>
+    
+          <%if (data.empty==false){%> 
+           <td><%=data.stocking%></td>
+          <%}else{%>
+          <td><button class="btn btn-md btn-outline-danger">Out-Of-Stock</button></td>
+          <%}%>
+     <%}else{%>
+      <%if (data.emptyOne==false){%> 
+           <td><%=data.totalOne%></td>
+          <%}else{%>
+          <td><button class="btn btn-md btn-outline-danger">Out-Of-Stock</button></td>
+          <%}%>     
+
+     <%if (data.emptyTwo==false){%> 
+           <td><%=data.totalTwo%></td>
+          <%}else{%>
+          <td><button class="btn btn-md btn-outline-danger">Out-Of-Stock</button></td>
+          <%}%>
+
+
+     <%}%>  
+    <%if(data.key!=="mustards" && data.key!=="soyabeans"){%>
+  
+	     <td> <div class="dropdown">
+			  <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+			  Update
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+ 
+			     <li disabled><a class="dropdown-item" href="/increaseStock/<%=data._id%>/1">1</a></li>
+                    
+           <li disabled><a class="dropdown-item" href="/increaseStock/<%=data._id%>/2">2</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStock/<%=data._id%>/3">3</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStock/<%=data._id%>/4">4</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStock/<%=data._id%>/5">5</a></li>
+
+
+              
+</td>
+       <%}else{%>
+
+ <td> <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Update1L
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+ 
+           <li disabled><a class="dropdown-item" href="/increaseStockOne/<%=data._id%>/1">1</a></li>
+                    
+           <li disabled><a class="dropdown-item" href="/increaseStockOne/<%=data._id%>/2">2</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStockOne/<%=data._id%>/3">3</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStockOne/<%=data._id%>/4">4</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStockOne/<%=data._id%>/5">5</a></li>
+
+
+              
+</td>
+
+ <td> <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Update2L
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+ 
+           <li disabled><a class="dropdown-item" href="/increaseStockTwo/<%=data._id%>/1">1</a></li>
+                    
+           <li disabled><a class="dropdown-item" href="/increaseStockTwo/<%=data._id%>/2">2</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStockTwo/<%=data._id%>/3">3</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStockTwo/<%=data._id%>/4">4</a></li>
+           
+           <li disabled><a class="dropdown-item" href="/increaseStockTwo/<%=data._id%>/5">5</a></li>
+
+
+              
+</td>
+
+
+       <%}%>    
+           <td><%=data.date.toLocaleString("en-UN")%></td>
+
+    </tr>
+  </tbody>
+  <%})%>  
+<%}else{%>
+
+
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+     
+      <th scope="col">Name</th>
+     
+
+
+      <th scope="col">Price</th>
+      <%if(data.leters){%>
+            <th scope="col">Size</th>
+
+      <%}%>
+      <th scope="col">offPrice</th>
+
+       <th scope="col">Offer</th>
+       <th scope="col">Stock</th>
+       <th scope="col">updateStock</th>
+       <th scope="col">updationDate</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">.</th>
+      <td></td>
+
+      <td style="word-break:break-word"></td>
+
+      
+      <td></td>
+      <td></td>
+      <td><b>No Product Found</b></td>
+           <td></td>
+          
+       <td> 
+
+              
+</td>
+           <td></td>
+
+    </tr>
+  </tbody>
+
+
+<%}%>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

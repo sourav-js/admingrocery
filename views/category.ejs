@@ -1,0 +1,453 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+
+
+<style type="text/css">
+    [19:39, 09/12/2021] Gargi: footer{
+    background: var(--ternary);
+    padding: 4rem 0;
+}
+
+footer .container{
+    display:flex;
+    color:var(--footer);
+}
+footer .box{
+    flex:1;
+    margin-right:2rem;
+    text-align: center;
+}
+footer .gallery-api img{
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+footer .gallery-api .post-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+footer .gallery-api .post-wrap > div{
+    width: calc(1/3*100% - (1 - 1/3)*10px);
+    margin-bottom: 10px;
+}
+footer .box ul{
+    list-style-type: none;
+
+}
+footer .box ul li a{
+    color: var(--footer);
+    text-decoration: none;
+    transition: all .4s ease;
+}
+footer .box ul li a:hover{
+    color: var(--light);
+}
+footer .boxh3{
+    border-bottom: 1px solid var(--light);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+[19:40, 09/12/2021] Gargi: @font-face {
+    font-family: "Roboto-Regular";
+    src:url(../fonts/Roboto-Regular.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-medit";
+    src:url(../fonts/Roboto-MediumItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-thit";
+    src:url(../fonts/Roboto-ThinItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-liit";
+    src:url(../fonts/Roboto-LightItalic.ttf)
+}
+
+@font-face {
+    font-family: "Roboto-med";
+    src:url(../fonts/Roboto-Medium.ttf)
+}
+/colors/
+
+:root{
+    --primary:#175c0e;
+    --secodery:#232B38;
+    --ternary:#adadad;
+    --danger:#FE4545;
+    --violate:rgb(47, 42, 68);
+    --pure:#94f76d;
+    --light:#F0F0F0;
+    --heaven:#b5ff8a;
+    --footer:#35373b;
+}
+body{
+	background-image:url("https://wallpapercave.com/wp/TjUG3t2.jpg")
+}
+.images:hover{
+	transform:scale(1.2);
+  transition:all .5s ease;
+	
+}
+
+</style>
+
+<title>Category</title>
+
+<button style="border:none"  class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fas fa-bars" style="font-size:50px;text-decoration:none" ></i></button>
+
+<div  class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+   
+  </div>
+</div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>.....</p>
+  </div>
+</div>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+ <%if (currentUser){%>
+    <h4><i class="fas fa-user"> Hi! <%=currentUser.first%></i></h4>
+  <%}else{%>
+    <h4> <i class="fas fa-shopping-bag"> Welcome To GroceryJi</i></h4>
+     
+
+  <%}%>
+    </h5>
+    <br>
+     
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+    <%if (currentUser){%>
+   <br>
+  <div class="offcanvas-body">
+      <div><a href="/allProduct" style="text-decoration:none;color:black"><h6><b><i class="fab fa-product-hunt"> All-Products</i></b></h6></a></div>
+    
+  </div>
+
+ 
+ <div class="offcanvas-body">
+      <div><a href="/orders" style="text-decoration:none;color:black"><h6><b><i class="fas fa-sort-alpha-down"> My-Orders</i></b></h6></a></div>
+    
+  </div>
+
+<div class="offcanvas-body">
+      <div><a href="/wishlist" style="text-decoration:none;color:black"><h6><b><i class="fas fa-clipboard-list"> My-Wishlist</i></b></h6></a></div>
+    
+  </div>
+
+<div class="offcanvas-body">
+    
+   <div><a href="/cart" style="text-decoration:none;color:black" ><b><h6><i class="fas fa-shopping-cart"> My-Cart</i></b></h6></a></div>
+    
+  </div>
+
+<div class="offcanvas-body">
+    
+   <div><a href="/forgot" style="text-decoration:none;color:black"><b><h6><i class="fas fa-unlock"> Change-Password</i></b></h6></a></div>
+    
+  </div>
+
+<div class="offcanvas-body">
+    
+   <div><a href="/login" style="text-decoration:none;color:black"><b><h6><i class="fas fa-user-circle"> Create-Another-Account</i></b></h6></a></div>
+    
+  </div>
+
+<div class="offcanvas-body">
+    
+   <div><a href="/logout" style="text-decoration:none;color:black"><b><h6><i class="fas fa-power-off"> Log-Out</i></b></h6></a></div>
+    
+  </div>
+
+    <%}else{%>
+   <br>
+    <div class="offcanvas-body">
+      <div><a href="/allProduct" style="text-decoration:none;color:black"><h6><b><i class="fab fa-product-hunt"> All-Products</i></b></h6></a></div>
+    
+  </div>
+   <div class="offcanvas-body">
+      <div><a href="/login" style="text-decoration:none;color:black"><h6><b><i class="fas fa-sign-in-alt"> Log-In</i></b></h6></a></div>
+    
+  </div>
+<div class="offcanvas-body">
+    
+   <div><a href="/forgot" style="text-decoration:none;color:black"><b><h6><i class="fas fa-key"> Change-Password</i></b></h6></a></div>
+    
+  </div>
+
+
+<%}%>
+</div>
+<div style="padding-top:200px;padding-left:20px;padding-bottom:100px">
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-sm-12"  ><div style="padding-bottom:100px;"><div style="box-shadow:1px 2px  3px grey;border-radius:20px"  class="img-thumbnail images" align="center">
+    <a href="/catproduct/mustards"><img src="https://rukminim1.flixcart.com/image/612/612/j98t0280/edible-oil/n/y/m/1-healthy-tasty-kachchi-ghani-pouch-mustard-oil-emami-original-imaez2wzxaw3wutq.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Mustard Oil</b>
+            
+            
+                    
+            </div> 
+            </div>
+        </div>
+        </div>
+       </div>
+    
+    <div class="col-lg-3 col-sm-12 image" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/soyabeans"><img src="https://rukminim1.flixcart.com/image/612/612/kqidx8w0/edible-oil/8/z/o/refined-pouch-soyabean-oil-fortune-original-imag4gb3gy7ykafy.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Soyabean Oil</b>
+            
+            
+                   </div> 
+            </div> 
+        </div>
+        </div>
+       </div>
+     
+      <div class="col-lg-3 col-sm-12 image" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/biscuits"><img src="https://rukminim1.flixcart.com/image/612/612/k9a8tjk0/cookie-biscuit/t/t/z/300-nutri-choice-crackers-britannia-original-imafr44tk2juzypf.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Biscuits</b>
+            
+            
+                  </div>  
+            </div> 
+        </div>
+        </div>
+       </div>
+
+   
+           <div class="col-lg-3 col-sm-12 image" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/jeeras"><img src="https://rukminim1.flixcart.com/image/612/612/kwtkxow0/spice-masala/x/3/z/-original-imag9eumhfxjwgkf.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Jeera</b>
+            
+            
+                    </div>
+            </div> 
+        </div>
+        </div>
+       </div>
+
+          
+           <div class="col-lg-3 col-sm-12 image" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/salts"><img src="https://rukminim1.flixcart.com/image/612/612/klscivk0/salt/u/y/q/lite-iodized-salt-tata-original-imagytt7gmgyzgbh.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Salt</b>
+            
+            
+                    </div>
+            </div> 
+        </div>
+        </div>
+       </div>
+
+    <div class="col-lg-3 col-sm-12 image" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/eggs"><img src="https://rukminim1.flixcart.com/image/612/612/kiyw9e80/egg/y/c/h/20-premium-pack-of-20-eggs-ovo-farm-fresh-original-imafynfgvqzqchub.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Eggs</b>
+            
+            
+                    </div>
+            </div> 
+        </div>
+        </div>
+       </div>
+
+    
+      <div class="col-lg-3 col-sm-12 image" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/powders"><img src="https://rukminim1.flixcart.com/image/612/612/kgv5x8w0/spice-masala/u/t/w/200-red-chilli-powder-pouch-catch-powder-original-imafxyf4wq3xzmbc.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Chilli Powder</b>
+            
+            
+                    </div>
+            </div> 
+        </div>
+        </div>
+       </div>
+
+  
+     <div class="col-lg-3 col-sm-12 image" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/butters"><img src="https://rukminim1.flixcart.com/image/612/612/jb5e4y80/butter/3/p/r/100-pasteurised-amul-original-imafykhy5nqzs58h.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Butter</b>
+            
+            
+                    </div>
+            </div> 
+        </div>
+        </div>
+       </div>
+
+  
+     <div class="col-lg-3 col-sm-12" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/sugars"><img src="https://rukminim1.flixcart.com/image/612/612/kmwcuq80/sugar/4/m/k/50-less-calories-pouch-white-sugar-sugarlite-crystal-original-imagfzwgus8krhz9.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Sugar</b>
+            
+            
+                    </div>
+            </div> 
+        </div>
+        </div>
+       </div>   
+
+
+      <div class="col-lg-3 col-sm-12" ><div style="padding-bottom:100px"><div style="box-shadow:1px 2px  3px grey;border-radius:20px" class="img-thumbnail images"  align="center">
+    <a href="/catproduct/ghees"><img src="https://rukminim1.flixcart.com/image/612/612/ks4yz680/ghee/y/k/3/svasti-pure-cow-plastic-bottle-aashirvaad-original-imag5rszfy8hyjfh.jpeg?q=70" style="width:150px;height:200px;padding-bottom:100px;cursor:pointer;" ></a>
+   
+        
+
+        <div style="transform:translateY(50px)">
+        <div style="transform:translateY(-200%);padding-left:2px;">
+         
+        <b>Ghee</b>
+            
+            
+                    </div>
+            </div> 
+        </div>
+        </div>
+       </div>
+
+    </div>
+
+
+
+    
+   
+  </div>
+</div>
+<footer style="background:lightgrey">
+        <div class="container">
+            <div class="box">
+                <h3><em>About Us</em></h3>
+                <p><b>groceryJI is revolutionising e-commerce by
+                 making the stuff most important to you, available
+                  to you in a blink of your eye. We are here to get your chores out of your way.</b></p>
+                  <a href="/allProduct"><button class="btn btn-success">GroceryJi</button></a>
+                
+            </div>
+            <div class="box">
+                <h3><em>Links</em></h3>
+                <ul><b>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About us</a>
+                    </li>
+                    <li>
+                        <a href="#">Blogs</a>
+                    </li>
+                    <li>
+                        <a href="#">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact us</a>
+                    </li>
+                </b></ul>
+            </div>
+            <div class="box">
+                
+            </div>
+            <div class="box gallery-api">
+                <h3>Folllow us</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                            <span>facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fas fa-envelope"></i>
+                            <span>e-mail</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fab fa-instagram"></i>
+                            <span>instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                           <i class="fab fa-twitter"></i>
+                            <span>twitter</span>
+                        </a>
+                    </li>
+                </ul>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
