@@ -120,19 +120,19 @@ User
       <th scope="row"><a href="/deleteProduct/<%=data._id%>"><i class="far fa-trash-alt" style="color:red"></i></a></th>
      
        <%if(data.urls=="URL"){%>
-        <td><a href="https://groceryji.com/moreinfo/<%=data._id%>"><img src="<%=data.image%>" style="width:50px"></a></td>
+        <td><a href="https://groceryji.herokuapp.com/moreinfo/<%=data._id%>"><img src="<%=data.image%>" style="width:50px"></a></td>
        <%}else{%>
-             <td><a href="https://groceryji.com/moreinfo/<%=data._id%>"><img src="/<%=data.image%>" style="width:50px"></a></td>
+             <td><a href="https://groceryji.herokuapp.com/moreinfo/<%=data._id%>"><img src="/<%=data.image%>" style="width:50px"></a></td>
 
        <%}%>
-      <td style="word-break:break-word"><a href="/updateData/<%=data._id%>/name" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"></i></a> <%=data.Name%>  </td>
+      <td style="word-break:break-word"><a href="https://api-groceryji.herokuapp.com/updateData/<%=data._id%>/name" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"></i></a> <%=data.Name%>  </td>
 
       
-      <td><a href="/updateData/<%=data._id%>/price" style="padding-left:10px"> <i class="fas fa-edit" style="color:black;"> </i> </a> <%=data.Price%></td>
+      <td><a href="https://api-groceryji.herokuapp.com/updateData/<%=data._id%>/price" style="padding-left:10px"> <i class="fas fa-edit" style="color:black;"> </i> </a> <%=data.Price%></td>
       
      
       
-      <td><%=data.offer%>  <a href="/updateData/<%=data._id%>/offer" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"> </i> </a></td>
+      <td><%=data.offer%>  <a href="https://api-groceryji.herokuapp.com/updateData/<%=data._id%>/offer" style="padding-left:10px"><i class="fas fa-edit" style="color:black;"> </i> </a></td>
       
       <td><%=data.off%></td>
       <%if(data.key!=="mustards" && data.key!=="soyabeans"){%>
