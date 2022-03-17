@@ -5195,6 +5195,14 @@ if(!error && response.statusCode==200){
 
  }
 })
+
+app.get("/picture/:id/:key",function(req,res){
+   
+   user.findById(req.params.id,function(err,users){ 
+     res.render("picture.ejs",{users:users,key:req.params.key})
+  })
+})
+
 app.post("/registering",function(req,res){
  user.findOne({username:req.body.username},function(err,users){
   if (users!==null){
