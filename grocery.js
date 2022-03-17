@@ -5411,7 +5411,7 @@ app.get("/settoken/:id",function(req,res){
 
 
 app.post("/setTokenPassword",function(req,res){
-    user.findOne({username:req.body.username},function(err,users){
+    user.findOne({email:req.body.username},function(err,users){
       if(users.approval==true){
 
    users.updateOne({token:req.body.token},function(err,info){
@@ -5436,7 +5436,7 @@ app.post("/setTokenPassword",function(req,res){
 
 
 app.post("/setToken",function(req,res){
-user.findOne({username:req.body.email},function(err,users){
+user.findOne({email:req.body.email},function(err,users){
   
  if(users.approval==true){ 
   if (users){   
