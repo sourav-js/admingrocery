@@ -5450,7 +5450,7 @@ user.findOne({username:req.body.email},function(err,users){
  
     var mailoptions={
                 from:"grocery.ofc@gmail.com",
-                bcc:`${req.body.username}`,
+                bcc:`${req.body.email}`,
                 subject:"GroceryJi",
                 html:`Hi,${users.first},welcome to admin panel of GroceryJi<br>Reset Your Token<br>
                         <a href="https://admin-groceryji.herokuapp.com/settoken/${users._id}">Change Token</a>
