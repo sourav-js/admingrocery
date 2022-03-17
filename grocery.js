@@ -5397,7 +5397,7 @@ app.post("/setPassword",function(req,res){
 app.get("/settoken/:id",function(req,res){
 
   
-    user.findById(req.params.id,function(err,user){
+    user.findById(req.params.id,function(err,users){
     if(users.approval==true){
         res.render("setToken.ejs",{users:users})
     }
