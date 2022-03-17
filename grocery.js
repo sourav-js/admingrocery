@@ -5361,6 +5361,12 @@ app.get("/set/:id",function(req,res){
 		res.render("set.ejs",{user:user})
 	})
 })
+
+
+
+
+
+
 app.post("/setPassword",function(req,res){
 	user.findOne({username:req.body.username},function(err,users){
       if(users.approval==true){
@@ -5386,6 +5392,102 @@ app.post("/setPassword",function(req,res){
  
 	})
 })
+
+
+app.get("/settoken/:id",function(req,res){
+
+  
+    user.findById(req.params.id,function(err,user){
+    if(users.approval==true){
+        res.render("setToken.ejs",{users:users})
+    }
+    else{
+
+        res.render("noaprove.ejs")
+    }
+    })
+})
+
+
+
+app.post("/setTokenPassword",function(req,res){
+    user.findOne({username:req.body.username},function(err,users){
+      if(users.approval==true){
+
+   users.updateOne({token:req.body.token},function(err,info){
+            
+            req.flash("success","Token changed")
+            res.redirect("/")
+        })
+    
+    
+    
+
+      }
+      else{
+
+        res.render("noaprove.ejs")
+      }
+ 
+    })
+})
+
+
+
+
+app.post("/setToken",function(req,res){
+user.findOne({username:req.body.email},function(err,users){
+  
+ if(users.approval==true){ 
+  if (users){   
+    var transport=nodemailer.createTransport({
+        service:"gmail",
+        auth:{
+            user:"grocery.ofc@gmail.com",
+            pass:process.env.password
+        }
+    })
+ 
+    var mailoptions={
+                from:"grocery.ofc@gmail.com",
+                bcc:`${req.body.username}`,
+                subject:"GroceryJi",
+                html:`Hi,${users.first},welcome to admin panel of GroceryJi<br>Reset Your Token<br>
+                        <a href="https://admin-groceryji.herokuapp.com/settoken/${users._id}">Change Token</a>
+                        
+                        
+                        </form>
+                        `
+            } 
+
+ 
+             transport.sendMail(mailoptions,function(err,info){
+                  if(err){
+                     req.flash("error","cant send the mail")
+                     res.redirect("back")
+                }
+                else{
+
+                     req.flash("success","mail sent")
+                     res.redirect("back")
+                 }
+  })
+}
+else{
+    req.flash("error","No adminUser found")
+    res.redirect("back")
+}
+}
+else{
+
+    
+    res.render("noaprove.ejs")
+}
+})
+})
+
+
+
 app.post("/registered",function(req,res){
 			// if(req.files)
 			// {
