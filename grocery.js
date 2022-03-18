@@ -221,7 +221,15 @@ var oneSchema=new mongoose.Schema({
 
 
 var one=mongoose.model("one",oneSchema)
+var tokenSchema=new mongoose.Schema({
+ 
+  code:String
 
+
+})  
+
+
+var token=mongoose.model("token",tokenSchema)
 var twoSchema=new mongoose.Schema({
  
   id:String
@@ -4287,7 +4295,7 @@ app.post("/cancel/:id",function(req,res){
                                                        
                         
                         
-                                            <a href="https://grocery-ji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>                       
+                                            <a href="https://groceryji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>                       
                                                           
                                                           </form>`
                                     } 
@@ -4377,7 +4385,7 @@ app.post("/cancel/:id",function(req,res){
                                                        
                         
                         
-                                            <a href="https://grocery-ji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>                       
+                                            <a href="https://groceryji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>                       
                                                           
                                                           </form>`
                                     } 
@@ -4470,7 +4478,7 @@ app.post("/cancel/:id",function(req,res){
 						                               
 						
 						
-					                        <a href="https://grocery-ji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>						
+					                        <a href="https://groceryji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>						
 						                                  
 						                                  </form>`
 						            } 
@@ -4644,7 +4652,7 @@ app.post("/cancel/:id",function(req,res){
 						                               
 						
 						
-					                        <a href="https://grocery-ji.herokuapp.com/Orders/${orders._id}"<button style=color:green>Check Your Order</button></a>						
+					                        <a href="https://groceryji.herokuapp.com/Orders/${orders._id}"<button style=color:green>Check Your Order</button></a>						
 						                                  
 						                                  </form>`
 						            } 
@@ -5196,10 +5204,20 @@ if(!error && response.statusCode==200){
  }
 })
 
-app.get("/picture/:id/:key",function(req,res){
-   
+app.post("/picture/:id/:key",function(req,res){
+  
+token.findOne({code:req.body.token},function(err,tokens){
+  if(tokens){ 
    user.findById(req.params.id,function(err,users){ 
      res.render("picture.ejs",{users:users,key:req.params.key})
+  
+    
+  })
+   }
+   else{
+     
+     res.redirect("https://userverify-groceryji.herokuapp.com/")
+   }
   })
 })
 
