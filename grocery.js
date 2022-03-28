@@ -5444,9 +5444,17 @@ app.get("/settoken/:id",function(req,res){
 
 app.post("/setTokenPassword",function(req,res){
     user.findOne({email:req.body.username},function(err,users){
+    user.findOne({token:req.body.token},function(err,infotoken){
+  if(infotoken){
+     
+      req.flash("error","provided token already exist!")
+      res.redirect("back")
+  }
+    else{
       if(users.approval==true){
+  
 
-   users.updateOne({token:req.body.token},function(err,info){
+     users.updateOne({token:req.body.token},function(err,info){
             
             req.flash("success","Token changed")
             res.redirect("/")
@@ -5454,14 +5462,18 @@ app.post("/setTokenPassword",function(req,res){
     
     
     
-
-      }
+     }
+      
       else{
 
         res.render("noaprove.ejs")
       }
  
-    })
+       }
+       })  
+     
+  })
+  
 })
 
 
