@@ -109,8 +109,15 @@ User
 
        <%}%>
        
-       <th scope="col">updationDate</th>
+              <%if(data.key!=="mustards" && data.key!=="soyabeans"){%>
+ 
+                <th scope="col">updationDate</th>
+              <%}else{%>
+                 <th scope="col">updation1L</th>
+                <th scope="col">updation2L</th>
 
+
+              <%}%> 
 
 
     </tr>
@@ -222,8 +229,16 @@ User
 
 
        <%}%>    
-           <td><%=data.date.toLocaleString("en-UN")%></td>
+             <%if(data.key!=="mustards" && data.key!=="soyabeans"){%>
+  
+                <td><%=data.date.toLocaleString("en-UN")%></td>
+                <%}else{%>
+                <td><%=data.date.toLocaleString("en-UN")%></td>
+               
+                <td><%=data.datetwo.toLocaleString("en-UN")%></td>
 
+
+               <%}%>
     </tr>
   </tbody>
   <%})%>  

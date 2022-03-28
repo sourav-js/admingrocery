@@ -260,6 +260,7 @@ var productSchema=new mongoose.Schema({
     totalTwo:Number,
 
      
+        datetwo:{type:Date,default:Date.now},
 
 
     date:{type:Date,default:Date.now},
@@ -467,7 +468,7 @@ app.use(function(req,res,next){
 app.get("/time",function(req,res){
 
     var dates=new Date()
-    res.send(dates.getMonth())
+    res.send(dates.toString())
 })
 
 
@@ -1589,7 +1590,6 @@ request("https://api-groceryji.herokuapp.com/users",function(error,response,data
              
 
           }       
-     
      if(users.length>0){
       for(var i=0;i<users.length;i++){
        
@@ -4925,6 +4925,9 @@ app.get("/deleteProduct/:id",function(req,res){
            
 
         }
+
+
+
 })
 })
 
@@ -5221,6 +5224,9 @@ token.findOne({code:req.body.token},function(err,tokens){
   })
 })
 
+
+
+
 app.post("/registering",function(req,res){
  user.findOne({username:req.body.username},function(err,users){
   if (users!==null){
@@ -5258,7 +5264,7 @@ app.post("/registering",function(req,res){
 			var mailoptions={
 				from:"grocery.ofc@gmail.com",
 				bcc:`${req.body.username}`,
-				subject:"GroceryJi",
+				subject:"AdminGroceryJi",
 				html:`Hi,${req.body.first},welcome to Admin panel of GroceryJi<br>please activate your adminAccount<br>
 						Your activation code is <b>${code}</b>
 						
