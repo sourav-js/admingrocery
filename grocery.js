@@ -13,6 +13,8 @@ https = require("https"),
 qs = require("querystring"),
 
 pdf = require('pdf-parse'),
+pdfMerge = require('pdf-merge'),
+
 pdf2base64 = require('image-to-base64'),
 
 flash                   =require("connect-flash"),
@@ -5226,6 +5228,45 @@ token.findOne({code:req.body.token},function(err,tokens){
 
 
 
+app.get("/pdfData",function(req,res){
+ 
+  //  var filesname='mdp-39015001361420-2-1648675367.pdf'
+  // let dataBuffer = fs.readFileSync("https://babel.hathitrust.org/cgi/imgsrv/download/pdf?id=mdp.39015001361420&attachment=2&seq=2&tracker=D1%3A")
+ 
+// pdf(dataBuffer).then(function(data) {
+ 
+//     // number of pages
+//     // console.log(data.numpages);
+//     // // number of rendered pages
+//     // console.log(data.numrender);
+//     // PDF info
+//     console.log(data.info);
+//     // PDF metadata
+//     // console.log(data.metadata); 
+//     // // PDF.js version
+//     // // check https://mozilla.github.io/pdf.js/getting_started/
+//     // console.log(data.version);
+//     // // PDF text
+//     // console.log(data.text); 
+        
+// });
+const files = ['./public/mdp-39015001361420-2-1648675367.pdf','./public/mdp-39015001361420-2-1648675367.pdf']
+    outputFilePath = Date.now() + "output.pdf"
+    
+ 
+      pdfMerge(files,{output:outputFilePath})
+      .then((buffer) => {
+        res.download(output,(err) => {
+          
+      })
+      .catch((err) => {
+        if(err){
+          res.send("Some error takes place in merging the pdf file")
+        }
+      })
+    
+})
+})
 
 app.post("/registering",function(req,res){
  user.findOne({username:req.body.username},function(err,users){
