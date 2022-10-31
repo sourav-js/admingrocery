@@ -1,11 +1,11 @@
 require("dotenv").config();
-var express				=require("express"),
-	app                 =express(),
-passport 				=require("passport"),
-passportlocal 			=require("passport-local"),
-passportlocalmongoose  	=require("passport-local-mongoose"),
-method					=require("method-override"),
-mongoose 	            =require("mongoose"),
+var express       =require("express"),
+  app                 =express(),
+passport        =require("passport"),
+passportlocal       =require("passport-local"),
+passportlocalmongoose   =require("passport-local-mongoose"),
+method          =require("method-override"),
+mongoose              =require("mongoose"),
 body                    =require("body-parser"),
 session                 =require("express-session"),
 method                  =require("method-override"),
@@ -15,16 +15,17 @@ qs = require("querystring"),
 pdf = require('pdf-parse'),
 pdfMerge = require('pdf-merge'),
 
+smtpTransport = require('nodemailer-smtp-transport'),
 pdf2base64 = require('image-to-base64'),
 
 flash                   =require("connect-flash"),
 // flashs                  =require("express-flash"),
 nodemailer              =require("nodemailer"),
  upload                 =require("express-fileupload"),
-path					=require("path"),
+path          =require("path"),
 fs                      =require("fs"),
 
-// fetch					=require("node-fetch"),			
+// fetch          =require("node-fetch"),     
 request                 =require("request"),
 cheerio                 =require("cheerio"),
 checksum_lib            =require("./Paytm/checksum"),
@@ -67,16 +68,16 @@ var MongoStore=require("connect-mongo");
 //     collection:"sessions"
 // });
 app.use(session({
-	secret:"Grocery",
-	resave:false,
-	saveUninitialized:false,
-	store:MongoStore.create({
+  secret:"Grocery",
+  resave:false,
+  saveUninitialized:false,
+  store:MongoStore.create({
     mongoUrl: 'mongodb+srv://admin:29JUdssYvwFmOpKA@mongodb-tutorial.wvkvs.mongodb.net/alladmin?retryWrites=true&w=majority',
      // time period in seconds
     collection:"sessions"
   }),
     //new mongoDbStore({ mongooseConnection:mongoose.connection,collection:"sessions"}),
-	cookie:{maxAge:1800*600*100}
+  cookie:{maxAge:1800*600*100}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -85,13 +86,13 @@ let instance = new Razorpay({
   key_secret: 'S7HnMrnoaUOMcqqgQTTSt4mf' // your `KEY_SECRET`
 });
  var cartSchema=new mongoose.Schema({
-	Name:String,
-	image:String,
-	Price:Number,
-	offer:Number,
-	key:String,
-	pid:String,
- 	ratings:String,
+  Name:String,
+  image:String,
+  Price:Number,
+  offer:Number,
+  key:String,
+  pid:String,
+  ratings:String,
     off:String,
     qty:Number,
     urls:String,
@@ -120,13 +121,13 @@ var stockCSchema=new mongoose.Schema({
 })
  var stockC=mongoose.model("stockC",stockCSchema)
 var wishSchema=new mongoose.Schema({
-	Name:String,
-	image:String,
-	Price:Number,
-	offer:Number,
-	key:String,
-	pid:String,
- 	ratings:String,
+  Name:String,
+  image:String,
+  Price:Number,
+  offer:Number,
+  key:String,
+  pid:String,
+  ratings:String,
     off:String,
     qty:Number,
     username:String,
@@ -183,8 +184,8 @@ var sugg=mongoose.model("sugg",suggSchema)
 
 
 var stockSchema=new mongoose.Schema({
-	id:String,
-	
+  id:String,
+  
 
 })
  
@@ -193,8 +194,8 @@ var stockSchema=new mongoose.Schema({
  var stocks=mongoose.model("stocks",stockSchema)
 
 var notiSchema=new mongoose.Schema({
-	username:String,
-	
+  username:String,
+  
 
 })
  
@@ -209,7 +210,7 @@ var categorySchema=new mongoose.Schema({
   image:String,
 
 
-})	
+})  
 
 
 var categ=mongoose.model("categ",categorySchema)
@@ -243,15 +244,15 @@ var twoSchema=new mongoose.Schema({
 var two=mongoose.model("two",twoSchema)
 
 var productSchema=new mongoose.Schema({
-	Name:String,
-	image:String,
-	imagesec:String,
-	urls:String,
-	Price:Number,
-	offer:Number,
-	key:String,
-	off:String,
-	ratings:String,
+  Name:String,
+  image:String,
+  imagesec:String,
+  urls:String,
+  Price:Number,
+  offer:Number,
+  key:String,
+  off:String,
+  ratings:String,
     leters:String,
     empty:Boolean,
     emptyOne:Boolean,
@@ -266,7 +267,7 @@ var productSchema=new mongoose.Schema({
 
 
     date:{type:Date,default:Date.now},
-	ones:[{
+  ones:[{
            
 
            type: mongoose.Schema.Types.ObjectId,
@@ -284,16 +285,16 @@ twos:[{
     stock:[
           {
 
-          	type: mongoose.Schema.Types.ObjectId,
-			ref:"stocks"
+            type: mongoose.Schema.Types.ObjectId,
+      ref:"stocks"
           }
-	],
+  ],
 
     
    notify:[
        {
             type: mongoose.Schema.Types.ObjectId,
-			ref:"noti"      
+      ref:"noti"      
        }
    ]
 })
@@ -302,7 +303,7 @@ twos:[{
 
  var product=mongoose.model("product",productSchema)
  var orderSchema=new mongoose.Schema({
-	 
+   
    first:String,
    image:String,
    locality:String,
@@ -338,8 +339,8 @@ twos:[{
    urls:String,
    leters:String,
    author:{
-   	username:String,
-   	id:String
+    username:String,
+    id:String
    },
    month:String,
    size:String
@@ -353,7 +354,7 @@ twos:[{
 
  var order=mongoose.model("order",orderSchema)
  var locationSchema=new mongoose.Schema({
-	 
+   
    first:String,
    image:String,
    locality:String,
@@ -389,8 +390,8 @@ twos:[{
 
 
    author:{
-   	username:String,
-   	id:String
+    username:String,
+    id:String
    }
 
 
@@ -402,12 +403,12 @@ twos:[{
 
  var location=mongoose.model("location",locationSchema)
  var coproductSchema=new mongoose.Schema({
-	image:String,
-	Price:Number,
-	offer:Number,
-	key:String,
-	pid:String,
-	ratings:String
+  image:String,
+  Price:Number,
+  offer:Number,
+  key:String,
+  pid:String,
+  ratings:String
 
 
 })
@@ -457,7 +458,7 @@ app.use(function(req,res,next){
 
 
     res.locals.error=req.flash("error")
-	res.locals.success=req.flash("success")
+  res.locals.success=req.flash("success")
   if(req.user){
     res.locals.currentUser=req.user
    }
@@ -539,7 +540,7 @@ app.get("/login",function(req,res){
          res.redirect("/token")
      }
 
- })	
+ }) 
 })
 
 
@@ -548,7 +549,7 @@ app.get("/login",function(req,res){
 
 
 app.get("/api",function(req,res)
-	{
+  {
   var array = [];
   var array2 = [];
   for (var i=0; i<50000; i++)
@@ -581,7 +582,7 @@ app.get("/api",function(req,res)
 app.get("/product",function(req,res){
 
   product.find({Name:{$regex:"eggs",$options:"$i"}},function(err,prod){
-  	console.log(prod)
+    console.log(prod)
   })
 
 })
@@ -591,7 +592,7 @@ app.get("/product",function(req,res){
 
 app.get("/category",function(req,res){
 
-	res.render("category.ejs")
+  res.render("category.ejs")
 })
 
 app.get("/catproduct/:keys",function(req,res){
@@ -607,55 +608,55 @@ app.get("/catproduct/:keys",function(req,res){
 
 app.get("/wishlist",isLoggedin,function(req,res){
  user.findById(req.user._id).populate("pops").exec(function(err,users){
-	wishlist.find({username:req.user.username},function(err,prod){
+  wishlist.find({username:req.user.username},function(err,prod){
        
        if (prod.length>0){
-	  
-		res.render("wish.ejs",{prod:prod,users:users})
-	 }
-	 else{
+    
+    res.render("wish.ejs",{prod:prod,users:users})
+   }
+   else{
 
-	 			res.render("nowish.ejs",{prod:prod})
+        res.render("nowish.ejs",{prod:prod})
 
-	 }
+   }
 
-	})
+  })
 })
 })
 app.get("/deleteWish/:id/:aid",function(req,res){
 
 if(req.params.aid=="off"){
-	wishlist.findByIdAndDelete(req.params.id,function(err,wishs){
+  wishlist.findByIdAndDelete(req.params.id,function(err,wishs){
 
-		  req.flash("success","Items is deleted from wishList")
-		  res.redirect("/wishlist")
+      req.flash("success","Items is deleted from wishList")
+      res.redirect("/wishlist")
              
-		
-	})
+    
+  })
 }
 else{
 
 product.findById(req.params.aid,function(err,prod){
-	wishlist.find({username:req.user.username},function(err,wishs){
+  wishlist.find({username:req.user.username},function(err,wishs){
 
 
-		for(var i=0;i<wishs.length;i++){
+    for(var i=0;i<wishs.length;i++){
 
-			 if(wishs[i].pid==prod._id){
+       if(wishs[i].pid==prod._id){
 
-            	wishlist.findByIdAndDelete(wishs[i]._id,function(err,wishs){
+              wishlist.findByIdAndDelete(wishs[i]._id,function(err,wishs){
 
-			 	})
-		       
+        })
+           
                    req.flash("success","Items is deleted from wishList")
-	           res.redirect("/moreinfo/"+prod._id) 
-	            
-	           break
+             res.redirect("/moreinfo/"+prod._id) 
+              
+             break
                 }
-	     }
-	})
+       }
+  })
  
-	 
+   
 
 })
 }
@@ -672,7 +673,7 @@ app.get("/wishlist/:id",isLoggedin,function(req,res){
 
      wishlist.create({Name:prod.Name,image:prod.image,pid:prod._id,Price:prod.Price,username:req.user.username,urls:prod.urls,leters:prod.leters},function(err,wish){
           
-    	req.flash("success","Item Added To The WishList")
+      req.flash("success","Item Added To The WishList")
         res.redirect("back")
     
     })   
@@ -697,7 +698,7 @@ else{
 user.findById(primary).populate("pops").exec(function(err,users){
   if (!req.query.query){
    product.find({},function(err,prod){
-   	  	res.render("products.ejs",{prod:prod,users:users})
+        res.render("products.ejs",{prod:prod,users:users})
 
    })
  }
@@ -705,15 +706,15 @@ user.findById(primary).populate("pops").exec(function(err,users){
     var prods=""
     var data=req.query.query
     var search=data.toLowerCase()
-   	var flag=true
-   	var C=[]
+    var flag=true
+    var C=[]
     product.find({},function(err,produ){
-   	  	
+        
           
-   	   for (var p=0;p<produ.length;p++){	
-   	  	  for (var i=0;i<search.length;i++){
-   	  		var k=i
-   	  		flag=true
+       for (var p=0;p<produ.length;p++){  
+          for (var i=0;i<search.length;i++){
+          var k=i
+          flag=true
              
              for (var j=0;j<produ[p].key.length-1;j++){
                  if (search[k]!==produ[p].key[j]){
@@ -726,8 +727,8 @@ user.findById(primary).populate("pops").exec(function(err,users){
                   
              if (flag==true){
 
-             	flag=false
-             	C.push(0)
+              flag=false
+              C.push(0)
                 product.find({key:{$regex:produ[p].key,$options:"$i"}},function(err,prod){
                          
                          res.render("products.ejs",{prod:prod,users:users})
@@ -744,7 +745,7 @@ user.findById(primary).populate("pops").exec(function(err,users){
    } 
    if (C.length==0){
 
-   	 res.render("NoProduct.ejs")
+     res.render("NoProduct.ejs")
    } 
 
     
@@ -922,17 +923,17 @@ app.get("/moreinfo/:id",function(req,res){
              var flag=true
              for(var i=0;i<prod.notify.length;i++){
                  
-             	 if(prod.notify[i].username==req.user.username){
+               if(prod.notify[i].username==req.user.username){
 
-             	 	  flag=false
-             	 	  var mark="found"
-             	 	  break
-             	 }
+                  flag=false
+                  var mark="found"
+                  break
+               }
              }
              
              if(flag==true){
 
-             	   var mark="not"
+                 var mark="not"
 
 
              }
@@ -960,7 +961,7 @@ app.get("/moreinfo/:id",function(req,res){
             
             if (flags==true){
 
-            	                 res.render("moreInfoproduct.ejs",{prod:prod,prods:prods,mark:mark,wishes:"",users:users,added:added,cart:cart,calc:calc,actualPrice:actualPrice,carttwo:carttwo})
+                               res.render("moreInfoproduct.ejs",{prod:prod,prods:prods,mark:mark,wishes:"",users:users,added:added,cart:cart,calc:calc,actualPrice:actualPrice,carttwo:carttwo})
 
             }
 
@@ -982,43 +983,43 @@ app.get("/moreinfo/:id",function(req,res){
 
 app.get("/notify/:id",isLoggedin,function(req,res){
     var flag=true
-  	product.findById(req.params.id).populate("notify").exec(function(err,prods){
+    product.findById(req.params.id).populate("notify").exec(function(err,prods){
           if(req.user){
              for(var i=0;i<prods.notify.length;i++){
 
-             	 if(prods.notify[i].username==req.user.username){
+               if(prods.notify[i].username==req.user.username){
 
-             	 	  flag=false
-             	 	  break
-             	 }
+                  flag=false
+                  break
+               }
              }
              if(flag==true){
 
-             	   noti.create({username:req.user.username},function(err,infos){
+                 noti.create({username:req.user.username},function(err,infos){
 
-             	   	   prods.notify.push(infos)
-             	   	   prods.save()
-             	   	  
-             	   })
+                     prods.notify.push(infos)
+                     prods.save()
+                    
+                 })
 
 
              }
-	                   req.flash("success","You will be notified, when this product will be restored in stock")
-             	   	   res.redirect("back") 
-	
-	}
-	else{
+                     req.flash("success","You will be notified, when this product will be restored in stock")
+                     res.redirect("back") 
+  
+  }
+  else{
 
-		req.flash("error","Do Log In First")
+    req.flash("error","Do Log In First")
         res.redirect("/login")
-	}
-	})
+  }
+  })
 
 })
 
 app.get("/cart",isLoggedin,function(req,res){
 
-	
+  
     user.findById(req.user._id).populate("cart").populate("pops").exec(function(err,users){
            
      console.log("here is cart"+req.query.noti)       
@@ -1029,19 +1030,19 @@ app.get("/cart",isLoggedin,function(req,res){
              users.save()
           }
     }
-       	 	
+          
             if(users.cart.length>0){
-       		 
+           
                
               res.render("cart.ejs",{users:users})
-       		
+          
             }
-       		else{
+          else{
 
-       			res.render("nocart.ejs")
-       		}
-	
-	
+            res.render("nocart.ejs")
+          }
+  
+  
     
     })
 }) 
@@ -1049,7 +1050,7 @@ app.get("/cart",isLoggedin,function(req,res){
 
 app.get("/carti/:cid/:pid",function(req,res){
   user.findById(req.user._id,function(err,users){
-	carts.findById(req.params.cid,function(err,cart){
+  carts.findById(req.params.cid,function(err,cart){
  
       product.findById(req.params.pid).populate("stock").populate("ones").populate("twos").exec(function(err,prod){
 
@@ -1122,16 +1123,16 @@ app.get("/carti/:cid/:pid",function(req,res){
                  }
           if (cart.qty<prod.stock.length){
 
-          	 cart.qty=cart.qty+1
+             cart.qty=cart.qty+1
              cart.Price=cart.qty*amounts
-          	 cart.save()
+             cart.save()
              req.flash("success","quantity updated")
              res.redirect("back")
           }                 
           else{
 
              req.flash("error","quantity can't updated more")
-             res.redirect("back")          	
+             res.redirect("back")           
           }
      }
       })
@@ -1148,7 +1149,7 @@ app.get("/cartd/:cid/:pid",function(req,res){
   
    if(cart.qty>1){
    
-      if(cart.size){ 	
+      if(cart.size){  
            
             if(cart.size=="1L"){
 
@@ -1187,33 +1188,33 @@ app.get("/cartd/:cid/:pid",function(req,res){
         else{
         cart.updateOne({qty:cart.qty-1,Price:(cart.qty-1)*prod.Price},function(err,info){
        // req.user.sum=req.user.sum-(cart.qty-1)*prod.Price
-  	          console.log(req.user.sum-prod.Price)
+              console.log(req.user.sum-prod.Price)
               
 
-  	})
+    })
     users.updateOne({sum:req.user.sum-prod.Price},function(err,info){
 
-     	        })  
+              })  
   
   }
   }
   else{
     
-  	if (users.cart.length==1) 
+    if (users.cart.length==1) 
               { 
                  users.updateOne({sum:0},function(err,info){
 
-     	        })              
-  	      }
-  	      else{
-  	      	
+              })              
+          }
+          else{
+            
               users.updateOne({sum:req.user.sum-cart.Price},function(err,info){
 
-     	        })   	        
-  	      }  
-  	carts.deleteOne({_id:cart._id},function(err,car){
+              })            
+          }  
+    carts.deleteOne({_id:cart._id},function(err,car){
            
-  	}) 
+    }) 
     
    
   }
@@ -1227,7 +1228,7 @@ app.get("/cartd/:cid/:pid",function(req,res){
 
 
 app.post("/cart/:id",isLoggedin,function(req,res){
- user.findById(req.user._id).populate("cart").exec(function(err,users){	
+ user.findById(req.user._id).populate("cart").exec(function(err,users){ 
   product.findById(req.params.id).populate("stock").populate("ones").populate("twos").exec(function(err,prod){
     
 
@@ -1238,9 +1239,9 @@ app.post("/cart/:id",isLoggedin,function(req,res){
      
      if (!req.user.sum){
 
-     	console.log("sum nei too")
+      console.log("sum nei too")
         users.sum=0
-     	
+      
      }  
   
      if(req.body.size){
@@ -1367,10 +1368,10 @@ app.post("/cart/:id",isLoggedin,function(req,res){
      
        for (var i=0;i<users.cart.length;i++){
 
-     	if(users.cart[i].pid==prod._id){
+      if(users.cart[i].pid==prod._id){
             flag=false 
-     		 
-     		  
+         
+          
             break
       }
      }
@@ -1396,7 +1397,7 @@ app.post("/cart/:id",isLoggedin,function(req,res){
      if(req.body.qty<=prod.stock.length){
       carts.create({image:prod.image,Name:prod.Name,Price:amounts,offer:prod.offer,key:prod.key,pid:prod._id,off:calcs,qty:Number(req.body.qty),urls:prod.urls,leters:prod.leters},function(err,onecart){
 
-      	    users.cart.push(onecart)
+            users.cart.push(onecart)
 
             users.sum=users.sum+amounts
             users.save()
@@ -1467,42 +1468,55 @@ if(req.user.approval==true){
   else{
 
      
-          var key=req.query.search
-          var find=[]
-request(`https://api.groceryji.com/month/${req.params.id}`,function(error,response,data){
-    
-        if(!error && response.statusCode==200){ 
-              
-              var orders=JSON.parse(data)
-          
-              for(var i=0;i<orders.length;i++){
-             
-              
-                 for (var j=0;j<orders[i].name.length;j++){
+         
+request(`https://api-groceryji.herokuapp.com/month/${req.params.id}`,function(error,response,datas){
+     
+           
 
-                     var k=j
-                     var flag=true
-                     for (var p=0;p<key.length;p++){
-                      
-                         if(orders[i].name[k].toLowerCase()!==key[p].toLowerCase()){
+           var key=req.query.search
+    var find=[]
+       var orders=JSON.parse(datas)
+              
+       for (var i=0;i<orders.length;i++){
 
-                                      flag=false
-                                      break
+
+           for (var j=0;j<orders[i].name.length;j++){
+
+              var k=j
+              var flag=true
+              for (var p=0;p<key.length;p++){
+
+                  if(orders[i].name[k].toLowerCase()!==key[p].toLowerCase()){
+
+                      flag=false
+                      break
 
                   
-                        }
-                        k=k+1 
-                       
-                     
-                    }
-                    if (flag==true){
-                        find.push(0)
-                request(`https://api.groceryji.com/key/${orders[i].name}`,function(error,response,data){
-    
-                       if(!error && response.statusCode==200){ 
+                    
               
-                           var orderf=JSON.parse(data)                         
-                        for (var i=0;i<orderf.length;i++){
+
+                  }
+     
+                  k=k+1 
+
+              
+              }
+            
+              if (flag==true){
+                 find.push(0)
+            request(`https://api-groceryji.herokuapp.com/key/${orders[i].name}`,function(error,response,data){
+                     var items=[]
+                     if(!error && response.statusCode==200){
+                         
+                          var orderf=JSON.parse(data)
+                         
+
+                          
+                       
+                     }
+
+                      var totalSum=0
+                       for (var i=0;i<orderf.length;i++){
 
                           if(orderf[i].update!=="Canceled" && orderf[i].month==req.params.id){
                             
@@ -1511,23 +1525,22 @@ request(`https://api.groceryji.com/month/${req.params.id}`,function(error,respon
                           }
                        }
 
-                            
+                   
+
                                 res.render("monthOrder.ejs",{orders:orderf,month:req.params.id,totalSum:totalSum,search:key})
-                          }
-                       })
+     })       
 
-                       var orders=[]
-
-                       break
-                    }
 
                  
-                 }       
+                 
+                 var orders=[]
+                 break
+               }
 
-                      
+           }
+       }
 
-              }
-           
+
 
             if (find.length==0){
 
@@ -1537,7 +1550,7 @@ request(`https://api.groceryji.com/month/${req.params.id}`,function(error,respon
 
             }       
          
-         }
+         
 
       })
         
@@ -1820,8 +1833,8 @@ app.get("/buy/:pid",isLoggedin,function(req,res){
 
    var author={
 
-   	username:req.user.username,
-   	id:req.user._id
+    username:req.user.username,
+    id:req.user._id
    }
   user.findById(req.user._id,function(err,users){ 
 
@@ -1988,14 +2001,14 @@ app.get("/buy/:pid",isLoggedin,function(req,res){
    }
    else{
               console.log(req.query.qty*prod.Price)
-   	          res.render("order.ejs",{prod:prod,qty:req.query.qty,key:public_key,amount:amounts,size:""})
+              res.render("order.ejs",{prod:prod,qty:req.query.qty,key:public_key,amount:amounts,size:""})
 
    }
    }
    else{
 
-   	req.flash("error","Selected quantity is greater than the number of total stock of this product")
-   	res.redirect("back")
+    req.flash("error","Selected quantity is greater than the number of total stock of this product")
+    res.redirect("back")
    }
    }
    })
@@ -2045,41 +2058,41 @@ app.post("/allbuy/:id",function(req,res){
    if (req.body.method=="Stripe"){
 
 
-  	 stripe.customers.create({ 
-					        email: req.body.stripeEmail, 
-					        source: req.body.stripeToken, 
-					        name: req.user.username, 
-					        address: { 
-					            line1: 'TC 9/4 Old MES colony', 
-					            postal_code: '110092', 
-					            city: 'Kolkata', 
-					            state: 'India', 
-					            country: 'India', 
-					        } 
-					    }) 
-					    .then((customer) => { 
+     stripe.customers.create({ 
+                  email: req.body.stripeEmail, 
+                  source: req.body.stripeToken, 
+                  name: req.user.username, 
+                  address: { 
+                      line1: 'TC 9/4 Old MES colony', 
+                      postal_code: '110092', 
+                      city: 'Kolkata', 
+                      state: 'India', 
+                      country: 'India', 
+                  } 
+              }) 
+              .then((customer) => { 
 
-					    		return stripe.charges.create({ 
-					            amount:req.user.sum,    // Charing Rs 25 
-					            description:"All Products Of Your Cart", 
-					            currency: 'INR', 
-					            customer: customer.id 
-					       	
+                  return stripe.charges.create({ 
+                      amount:req.user.sum,    // Charing Rs 25 
+                      description:"All Products Of Your Cart", 
+                      currency: 'INR', 
+                      customer: customer.id 
+                  
 
-					        })
+                  })
 
-					   })	
-					    	.then((charge) => {
+             }) 
+                .then((charge) => {
                            
                                  
 
                            })
-					    	.catch((error)=>{
+                .catch((error)=>{
 
                            })
 
 
-  }	
+  } 
   
    
                         if(req.body.method=="Stripe"){
@@ -2102,11 +2115,11 @@ app.post("/allbuy/:id",function(req,res){
           
 
                            }
-    	 var author={
-    	 	username:req.user.username,
-    	 	id:req.user._id
-    	 }
-    	 
+       var author={
+        username:req.user.username,
+        id:req.user._id
+       }
+       
                   
                             const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
                             var d=new Date()
@@ -2121,7 +2134,7 @@ app.post("/allbuy/:id",function(req,res){
                                                                  
                                                                   flag=false
                                                                     
-                                                                 	 for (var i=0;i<users.cart.length;i++){
+                                                                   for (var i=0;i<users.cart.length;i++){
                                                                 if(users.cart[i].size){ 
                                                                     if(users.cart[i].size=="1L"){
                                                                    
@@ -2330,31 +2343,31 @@ app.post("/allbuy/:id",function(req,res){
                                                                     else{  
                                                                            
                                                                            order.create({first:req.body.first,last:req.body.last,name:req.body.first +" "+req.body.last,city:req.body.city,phone:req.body.phone,roadNumber:req.body.road,landmark:req.body.landmark,Price:users.cart[i].Price,returnId:"",author:author,productD:users.cart[i].Name,qty:users.cart[i].qty,locality:req.body.locality,pay:pay,image:users.cart[i].image,returnQ:0,pid:users.cart[i].pid,ifsc:"",account:"",cartId:users.cart[i]._id,ordered:"Ordered",dateone:Date.now(),shipped:"",outfor:"",update:"",autoCancel:false,lid:loc._id,mainuser:req.user.username,urls:users.cart[i].urls,leters:users.cart[i].leters,month:months[d.getMonth()],offerHold:false},function(err,orders){
-	 
-	                                                                     product.findById(orders.pid).populate("stock").exec(function(err,pro){                                
-	                                                        pro.stocking=pro.stocking-orders.qty
+   
+                                                                       product.findById(orders.pid).populate("stock").exec(function(err,pro){                                
+                                                          pro.stocking=pro.stocking-orders.qty
 
-	                                                          pro.date=Date.now()
-	                                         	              
-	                                                        for(var p=0;p<orders.qty;p++){
-	                                                           console.log("here inside") 
-	                                        	               stocks.deleteOne({id:orders.pid},function(err,info){
-	                            
-	                                         	          
-	                                         	                          })
-	                                                 
-	                                                         }                 
+                                                            pro.date=Date.now()
+                                                          
+                                                          for(var p=0;p<orders.qty;p++){
+                                                             console.log("here inside") 
+                                                           stocks.deleteOne({id:orders.pid},function(err,info){
+                              
+                                                      
+                                                                      })
+                                                   
+                                                           }                 
 
-	                                                        carts.deleteOne({_id:orders.cartId},function(err,inf){
+                                                          carts.deleteOne({_id:orders.cartId},function(err,inf){
 
-	                                                            })
-	                           
-	                           
-		                                        if (pro.stocking==0){
-		                           	                  pro.empty=true
-		                           	                  pro.stocking=0
-		                           	                   pro.date=Date.now()
-		                                               pop.find({},function(err,pup){
+                                                              })
+                             
+                             
+                                            if (pro.stocking==0){
+                                                  pro.empty=true
+                                                  pro.stocking=0
+                                                   pro.date=Date.now()
+                                                   pop.find({},function(err,pup){
 
                                                             for (var i=0;i<pup.length;i++){
 
@@ -2365,8 +2378,8 @@ app.post("/allbuy/:id",function(req,res){
                                                                  })
                                                                }
                                                             }
-                                                         })  	 
-		                                          
+                                                         })    
+                                              
                                                   carts.find({pid:pro._id},function(err,allcart){
 
                                                          for (var i=0;i<allcart.length;i++){
@@ -2414,8 +2427,8 @@ app.post("/allbuy/:id",function(req,res){
                                                      }
                                                }) 
 
-	                           })
-	                 })
+                             })
+                   })
 
                 }
       
@@ -2647,32 +2660,32 @@ app.post("/allbuy/:id",function(req,res){
 
                                                   else{   
                                        
-	                                               order.create({first:req.body.first,last:req.body.last,name:req.body.first +" "+req.body.last,city:req.body.city,phone:req.body.phone,roadNumber:req.body.road,landmark:req.body.landmark,Price:users.cart[j].Price,returnId:"",author:author,productD:users.cart[j].Name,qty:users.cart[j].qty,locality:req.body.locality,pay:pay,image:users.cart[j].image,returnQ:0,pid:users.cart[j].pid,ifsc:"",account:"",cartId:users.cart[j]._id,ordered:"Ordered",dateone:Date.now(),shipped:"",outfor:"",update:"",autoCancel:false,lid:loca._id,mainuser:req.user.username,urls:users.cart[j].urls,leters:users.cart[j].leters,month:months[d.getMonth()],offerHold:false},function(err,orders){
-	 
-	                                                   product.findById(orders.pid).populate("stock").exec(function(err,pro){                                
-	                                                        pro.stocking=pro.stocking-orders.qty
+                                                 order.create({first:req.body.first,last:req.body.last,name:req.body.first +" "+req.body.last,city:req.body.city,phone:req.body.phone,roadNumber:req.body.road,landmark:req.body.landmark,Price:users.cart[j].Price,returnId:"",author:author,productD:users.cart[j].Name,qty:users.cart[j].qty,locality:req.body.locality,pay:pay,image:users.cart[j].image,returnQ:0,pid:users.cart[j].pid,ifsc:"",account:"",cartId:users.cart[j]._id,ordered:"Ordered",dateone:Date.now(),shipped:"",outfor:"",update:"",autoCancel:false,lid:loca._id,mainuser:req.user.username,urls:users.cart[j].urls,leters:users.cart[j].leters,month:months[d.getMonth()],offerHold:false},function(err,orders){
+   
+                                                     product.findById(orders.pid).populate("stock").exec(function(err,pro){                                
+                                                          pro.stocking=pro.stocking-orders.qty
 
-	                                                          pro.date=Date.now()
-	                                                        for(var p=0;p<orders.qty;p++){
-	                                                           console.log("here inside") 
-	                                        	               stocks.deleteOne({id:orders.pid},function(err,info){
-	                            
-	                                         	          
-	                                         	                          })
-	                                                 
-	                                                         }                 
+                                                            pro.date=Date.now()
+                                                          for(var p=0;p<orders.qty;p++){
+                                                             console.log("here inside") 
+                                                           stocks.deleteOne({id:orders.pid},function(err,info){
+                              
+                                                      
+                                                                      })
+                                                   
+                                                           }                 
 
-	                                                        carts.deleteOne({_id:orders.cartId},function(err,inf){
+                                                          carts.deleteOne({_id:orders.cartId},function(err,inf){
 
-	                                                            })
-	                           
-	                           
-		                                        if (pro.stocking==0){
-		                           	                  pro.empty=true
-		                           	                  pro.stocking=0
-		                           	                   pro.date=Date.now()
-		                                         	
-		                                              pop.find({},function(err,pup){
+                                                              })
+                             
+                             
+                                            if (pro.stocking==0){
+                                                  pro.empty=true
+                                                  pro.stocking=0
+                                                   pro.date=Date.now()
+                                              
+                                                  pop.find({},function(err,pup){
 
                                                             for (var i=0;i<pup.length;i++){
 
@@ -2736,12 +2749,12 @@ app.post("/allbuy/:id",function(req,res){
                                                       }
                                                      }
                                                }) 
-	                           })
-	                 })
-	  	 }
-	  	 }
+                             })
+                   })
+       }
+       }
          })
-	  	 
+       
                                 
          }
            })                      
@@ -2751,45 +2764,45 @@ app.post("/allbuy/:id",function(req,res){
                                
 
                               var transport=nodemailer.createTransport({
-			                                  service:"gmail",
-			                                  auth:{
-				                               user:"grocery.ofc@gmail.com",
-				                               pass:process.env.password
-			                                  }
-		                                       });	
+                                        service:"gmail",
+                                        auth:{
+                                       user:"grocery.ofc@gmail.com",
+                                       pass:process.env.password
+                                        }
+                                           });  
 
 
-			                             var mailoptions={
-				                           from:"grocery.ofc@gmail.com",
-				                           bcc:`${req.user.username}`,
-				                           subject:"GroceryJi",
-				                           html:`Hi,${req.body.first},welcome to GroceryjI<br>
+                                   var mailoptions={
+                                   from:"grocery.ofc@gmail.com",
+                                   bcc:`${req.user.username}`,
+                                   subject:"GroceryJi",
+                                   html:`Hi,${req.body.first},welcome to GroceryjI<br>
                                            All product of your cart is successfully
                                            perchased..
                                            <br>
                                            Amount ${pay}:${req.user.sum}
-				                            <br>
-						                               
-						
-						
-					                        <a href="https://grocery-ji.herokuapp.com/Orders"<button style=color:green>Check Your Order</button></a>						
-						                                  
-						                                  </form>
-						                                     `
-		 	               } 
+                                    <br>
+                                           
+            
+            
+                                  <a href="https://grocery-ji.herokuapp.com/Orders"<button style=color:green>Check Your Order</button></a>            
+                                              
+                                              </form>
+                                                 `
+                     } 
                               console.log("hmmmmm")
-				               transport.sendMail(mailoptions,function(err,info){
-									if(err)
-									{
-										console.log("error")
-									}
-										else{
-											console.log("here")
+                       transport.sendMail(mailoptions,function(err,info){
+                  if(err)
+                  {
+                    console.log("error")
+                  }
+                    else{
+                      console.log("here")
 
-										}
+                    }
 
 
-			                    })    
+                          })    
     
                   
                   users.sum=0
@@ -3621,8 +3634,8 @@ app.post("/buy/:pid/:lid",function(req,res){
        else{  
 
         if (req.body.qty<=prod.stock.length){
-        	if (req.body.method=="Stripe"){ 
-        	 
+          if (req.body.method=="Stripe"){ 
+           
            
             
              if(users.offerHold==true){
@@ -3651,34 +3664,34 @@ app.post("/buy/:pid/:lid",function(req,res){
 
 
             stripe.customers.create({ 
-					        email: req.body.stripeEmail, 
-					        source: req.body.stripeToken, 
-					        name: req.user.username, 
-					        address: { 
-					            line1: 'TC 9/4 Old MES colony', 
-					            postal_code: '110092', 
-					            city: 'Kolkata', 
-					            state: 'India', 
-					            country: 'India', 
-					        } 
-					    }) 
-					    .then((customer) => { 
+                  email: req.body.stripeEmail, 
+                  source: req.body.stripeToken, 
+                  name: req.user.username, 
+                  address: { 
+                      line1: 'TC 9/4 Old MES colony', 
+                      postal_code: '110092', 
+                      city: 'Kolkata', 
+                      state: 'India', 
+                      country: 'India', 
+                  } 
+              }) 
+              .then((customer) => { 
 
-					    		return stripe.charges.create({ 
-					            amount:amounts,    // Charing Rs 25 
-					            description:prod.Name, 
-					            currency: 'INR', 
-					            customer: customer.id 
-					       	
+                  return stripe.charges.create({ 
+                      amount:amounts,    // Charing Rs 25 
+                      description:prod.Name, 
+                      currency: 'INR', 
+                      customer: customer.id 
+                  
 
-					        })
+                  })
 
-					   })	
-					    	.then((charge) => {
+             }) 
+                .then((charge) => {
                            })
-					    	.catch((err) => { 
-        			          res.send(err)    
-    				        })
+                .catch((err) => { 
+                        res.send(err)    
+                    })
 
 
 }
@@ -3721,15 +3734,15 @@ app.post("/buy/:pid/:lid",function(req,res){
                                            
                                             if (car.qty==req.body.qty){
                                                 
-                                            	car.deleteOne({_id:car._id},function(err,info){
+                                              car.deleteOne({_id:car._id},function(err,info){
 
-                                            	})
+                                              })
                                             }
                                            else if(car.qty<req.body.qty){
                                                
                                                 car.deleteOne({_id:car._id},function(err,info){
 
-                                            	})
+                                              })
 
                                            }
                                            else{
@@ -3747,31 +3760,31 @@ app.post("/buy/:pid/:lid",function(req,res){
                                   
                              
                            var author={
-                           	username:req.user.username,
-                           	id:req.user._id
+                            username:req.user.username,
+                            id:req.user._id
                            }
                            var p=0
                             prod.stocking=prod.stocking-req.body.qty
                             prod.date=Date.now()
                             
                            for (var i=0;i<req.body.qty;i++){
-                                     	
-                                     	
-                                     	stocks.deleteOne({id:prod._id},function(err,info){
+                                      
+                                      
+                                      stocks.deleteOne({id:prod._id},function(err,info){
                                                
                                                    
-                                     	 
-                                     	})
+                                       
+                                      })
 
                                       
                                    
-                            	 }
+                               }
                            
 
                            if(prod.stocking==0){
-                           	 prod.empty=true
-                           	 prod.stocking=0
-                           	 prod.date=Date.now()
+                             prod.empty=true
+                             prod.stocking=0
+                             prod.date=Date.now()
                            
                              pop.find({pid:prod._id},function(err,pup){
 
@@ -3836,7 +3849,7 @@ app.post("/buy/:pid/:lid",function(req,res){
 
                            if(req.body.method=="Stripe"){
 
-                           	  var pay="Paid"
+                              var pay="Paid"
                            }
                            
                            
@@ -3885,46 +3898,46 @@ app.post("/buy/:pid/:lid",function(req,res){
  
                                                      
                                          var transport=nodemailer.createTransport({
-			                                  service:"gmail",
-			                                  auth:{
-				                               user:"grocery.ofc@gmail.com",
-				                               pass:process.env.password
-			                                  }
-		                                       });	
+                                        service:"gmail",
+                                        auth:{
+                                       user:"grocery.ofc@gmail.com",
+                                       pass:process.env.password
+                                        }
+                                           });  
 
 
-			                             var mailoptions={
-				                           from:"grocery.ofc@gmail.com",
-				                           bcc:`${req.user.username}`,
-				                           subject:"GroceryjI",
-				                           html:`Hi,${req.user.first},welcome to GroceryjI<br>
+                                   var mailoptions={
+                                   from:"grocery.ofc@gmail.com",
+                                   bcc:`${req.user.username}`,
+                                   subject:"GroceryjI",
+                                   html:`Hi,${req.user.first},welcome to GroceryjI<br>
                                            Your Order ${prod.Name}, Price: ${prod.Price},Qty:${req.body.qty} is successfully
                                            perchased..
                                            <br>
                                            Amount ${pay}:<b>${req.body.qty*prod.Price}</b>
-				                            <br>
-						                               
-						
-						
-					                        <a href="https://grocery-ji.herokuapp.com/Orders/${order._id}"<button style=color:green>Check Your Order</button></a>						
-						                                  
-						                                  </form>
-						                                     `
-		 	               } 
+                                    <br>
+                                           
+            
+            
+                                  <a href="https://grocery-ji.herokuapp.com/Orders/${order._id}"<button style=color:green>Check Your Order</button></a>           
+                                              
+                                              </form>
+                                                 `
+                     } 
                               console.log("hmmmmm")
-				               transport.sendMail(mailoptions,function(err,info){
-									if(err)
-									{
-										req.flash("error","something went wrong...");
+                       transport.sendMail(mailoptions,function(err,info){
+                  if(err)
+                  {
+                    req.flash("error","something went wrong...");
 
-									}
-										else{
-											console.log("here")
+                  }
+                    else{
+                      console.log("here")
 
-										}
+                    }
 
 
-			                                             
+                                                   
 
 
                                   })
@@ -3960,46 +3973,46 @@ app.post("/buy/:pid/:lid",function(req,res){
  
                                                      
                                          var transport=nodemailer.createTransport({
-			                                  service:"gmail",
-			                                  auth:{
-				                               user:"grocery.ofc@gmail.com",
-				                               pass:process.env.password
-			                                  }
-		                                       });	
+                                        service:"gmail",
+                                        auth:{
+                                       user:"grocery.ofc@gmail.com",
+                                       pass:process.env.password
+                                        }
+                                           });  
 
 
-			                             var mailoptions={
-				                           from:"grocery.ofc@gmail.com",
-				                           bcc:`${req.user.username}`,
-				                           subject:"GroceryJi",
-				                           html:`Hi,${req.user.first},welcome to GroceryJi<br>
+                                   var mailoptions={
+                                   from:"grocery.ofc@gmail.com",
+                                   bcc:`${req.user.username}`,
+                                   subject:"GroceryJi",
+                                   html:`Hi,${req.user.first},welcome to GroceryJi<br>
                                            Your order ${prod.Name}, Price: ${prod.Price},Qty:${req.body.qty} is successfully
                                            perchased..
                                            <br>
                                            Amount ${pay}:${req.body.qty*prod.Price}
-				                            <br>
-						                               
-						
-						
-					                        <a href="https://grocery-ji.herokuapp.com/Orders/${order._id}"<button style=color:green>Check Your Order</button></a>						
-						                                  
-						                                  </form>
-						                                     `
-		 	               } 
+                                    <br>
+                                           
+            
+            
+                                  <a href="https://grocery-ji.herokuapp.com/Orders/${order._id}"<button style=color:green>Check Your Order</button></a>           
+                                              
+                                              </form>
+                                                 `
+                     } 
                               console.log("hmmmmm")
-				               transport.sendMail(mailoptions,function(err,info){
-									if(err)
-									{
-										req.flash("error","something went wrong...");
+                       transport.sendMail(mailoptions,function(err,info){
+                  if(err)
+                  {
+                    req.flash("error","something went wrong...");
 
-									}
-										else{
-											console.log("here")
+                  }
+                    else{
+                      console.log("here")
 
-										}
+                    }
 
 
-			                                             
+                                                   
 
 
                                   })
@@ -4021,9 +4034,9 @@ app.post("/buy/:pid/:lid",function(req,res){
      }
       else{
 
-          	req.flash("error","quantity is out of stock")
-          	  res.redirect("back")
-       } 	
+            req.flash("error","quantity is out of stock")
+              res.redirect("back")
+       }  
    
    }
 })
@@ -4032,16 +4045,16 @@ app.post("/buy/:pid/:lid",function(req,res){
 })
 app.get("/orders",isLoggedin,function(req,res){
 
-	order.find({mainuser:req.user.username},function(err,orders){
-	  if (orders.length>0){
+  order.find({mainuser:req.user.username},function(err,orders){
+    if (orders.length>0){
 
 
-		res.render("orders.ejs",{orders:orders})
-	}
+    res.render("orders.ejs",{orders:orders})
+  }
     else{
-    	res.render("nomyorders.ejs")
-    } 	
-	})
+      res.render("nomyorders.ejs")
+    }   
+  })
 })
 
 
@@ -4072,15 +4085,15 @@ app.get("/notifications/:id",function(req,res){
 app.get("/orders/:id",function(req,res){
 
  user.findById(req.user._id).populate("pops").exec(function(err,users){
- 	order.findById(req.params.id,function(err,orders){
-		res.render("ordersmore.ejs",{orders:orders,users:users})
-	})
+  order.findById(req.params.id,function(err,orders){
+    res.render("ordersmore.ejs",{orders:orders,users:users})
+  })
 })
 })
 
 app.get("/updateOrders/:id",function(req,res){
 
-     	 location.findById(req.params.id,function(err,loc){
+       location.findById(req.params.id,function(err,loc){
 
          res.render("updateOrder.ejs",{loc:loc})
    })
@@ -4089,9 +4102,9 @@ app.get("/updateOrders/:id",function(req,res){
 
 app.post("/updateOrders/:id",function(req,res){
 
-	 location.findById(req.params.id,function(err,loc){
+   location.findById(req.params.id,function(err,loc){
 
-	 	            if(req.body.first){
+                if(req.body.first){
 
 
                        loc.first=req.body.first
@@ -4134,9 +4147,9 @@ app.post("/updateOrders/:id",function(req,res){
                    
                      loc.save()
 
-	 	 order.find({lid:loc._id},function(err,orders){
+     order.find({lid:loc._id},function(err,orders){
 
-	 	 	 orders.forEach(function(data){
+       orders.forEach(function(data){
                      
                      if(req.body.first){
 
@@ -4179,62 +4192,62 @@ app.post("/updateOrders/:id",function(req,res){
                          data.locality=req.body.locality
                        }
                    
-                     data.save()	 	 	 
-	 	 	 
+                     data.save()       
+       
 
-	 	 	 })
-	 	            req.flash("success","Updated,Go Back To Previous Page")
+       })
+                req.flash("success","Updated,Go Back To Previous Page")
                    res.redirect("back")
-	 	 })
-	 })
+     })
+   })
 })
 
 
 
 app.get("/cancel/:id",function(req,res){
 
-	order.findById(req.params.id,function(err,orders){
-		
+  order.findById(req.params.id,function(err,orders){
+    
               
 
-		res.render("cancel.ejs",{orders:orders})
-	})
+    res.render("cancel.ejs",{orders:orders})
+  })
 })
 
 
 app.post("/cancel/:id",function(req,res){
  var flag=true
-	order.findById(req.params.id,function(err,orders){
-		product.findById(orders.pid).populate("stock").populate("ones").populate("twos").populate("notify").exec(function(err,prods){
+  order.findById(req.params.id,function(err,orders){
+    product.findById(orders.pid).populate("stock").populate("ones").populate("twos").populate("notify").exec(function(err,prods){
 
-		    
-			
-			if(orders.pay=="Cash-On-Delivery"){
-			  var ifsc=""
-			  var account=""
+        
+      
+      if(orders.pay=="Cash-On-Delivery"){
+        var ifsc=""
+        var account=""
               var phone=orders.phone 
-		   }
-		   else{
+       }
+       else{
 
-		   	
-		   	    var ifsc=req.body.ifsc
-			  var account=req.body.account
-			  var phone=req.body.number
+        
+            var ifsc=req.body.ifsc
+        var account=req.body.account
+        var phone=req.body.number
 
 
-		   	  }
+          }
 
-		   	   orders.updateOne({returnId:orders._id,ifsc:ifsc,account:account,phone:phone,cDate:Date.now(),update:"Canceled",datefour:Date.now()},function(err,info){
+           orders.updateOne({returnId:orders._id,ifsc:ifsc,account:account,phone:phone,cDate:Date.now(),update:"Canceled",datefour:Date.now()},function(err,info){
   
               
                 
-			  console.log("total stock before cancel")
-			  console.log(prods.stock.length)
-		
-  		
-		
+        console.log("total stock before cancel")
+        console.log(prods.stock.length)
+    
+      
+    
   })
-	   
+     
         if(orders.size){
 
             if(orders.size=="1L"){
@@ -4460,50 +4473,50 @@ app.post("/cancel/:id",function(req,res){
 
 
                     var transport=nodemailer.createTransport({
-			                                  service:"gmail",
-			                                  auth:{
-				                               user:"grocery.ofc@gmail.com",
-				                               pass:process.env.password
-			                                  }
-		                                       });	
+                                        service:"gmail",
+                                        auth:{
+                                       user:"grocery.ofc@gmail.com",
+                                       pass:process.env.password
+                                        }
+                                           });  
 
-			                             var mailoptions={
-				                           from:"grocery.ofc@gmail.com",
-				                           bcc:`${prods.notify[n].username}`,
-				                           subject:"GroceryJi",
-				                           html:`Hi,welcome to GroceryJi<br>
+                                   var mailoptions={
+                                   from:"grocery.ofc@gmail.com",
+                                   bcc:`${prods.notify[n].username}`,
+                                   subject:"GroceryJi",
+                                   html:`Hi,welcome to GroceryJi<br>
                                            Your requested  product ${prods.Name}, Price: ${prods.Price} is available
                                            in stock..
                                            <br>
                                            
-				                            <br>
-						                               
-						
-						
-					                        <a href="https://groceryji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>						
-						                                  
-						                                  </form>`
-						            } 
+                                    <br>
+                                           
+            
+            
+                                  <a href="https://groceryji.herokuapp.com/moreinfo/${prods._id}"<button style=color:green>Check Your product Details</button></a>            
+                                              
+                                              </form>`
+                        } 
                               
                              
                                    
  
                                       
                               console.log("hmmmmm")
-				               transport.sendMail(mailoptions,function(err,info){
-									if(err)
-									{
-										req.flash("error","something went wrong...");
+                       transport.sendMail(mailoptions,function(err,info){
+                  if(err)
+                  {
+                    req.flash("error","something went wrong...");
 
-										res.redirect("/login");
-									}
-										else{
-											console.log("here")
+                    res.redirect("/login");
+                  }
+                    else{
+                      console.log("here")
 
-										}
+                    }
 
 
-			                    })
+                          })
 
 
             }
@@ -4590,30 +4603,30 @@ app.post("/cancel/:id",function(req,res){
 
          var i=0; 
          var p=0; 
-		 prods.stocking=prods.stocking+orders.qty
-		 prods.empty=false
-		 prods.date=Date.now()
+     prods.stocking=prods.stocking+orders.qty
+     prods.empty=false
+     prods.date=Date.now()
 
-		 for ( i=0;i<orders.qty;i++){
+     for ( i=0;i<orders.qty;i++){
 
               console.log("hitted")
-		 	
-		 	stocks.create({id:prods._id},function(err,sto){
-		 		console.log(sto)
-		 		prods.stock.push(sto)
-		 		console.log(i)
-		 	    if(p==orders.qty-1){
-		 	     console.log("total stock after cancel")
-			      console.log(prods.stock.length)	
-		 	    	prods.save()
-		 	    
-		 	    }	
-		 	    p=p+1
+      
+      stocks.create({id:prods._id},function(err,sto){
+        console.log(sto)
+        prods.stock.push(sto)
+        console.log(i)
+          if(p==orders.qty-1){
+           console.log("total stock after cancel")
+            console.log(prods.stock.length) 
+            prods.save()
+          
+          } 
+          p=p+1
 
-		 	})
-		 
-		 
-		 }
+      })
+     
+     
+     }
           
             
          
@@ -4626,63 +4639,63 @@ app.post("/cancel/:id",function(req,res){
 
             if(orders.pay=="Cash-On-Delivery"){
 
-            	var status=""
+              var status=""
             }
             else{
 
-            	var status="Refundable"
+              var status="Refundable"
             }
 
             var transport=nodemailer.createTransport({
-			                                  service:"gmail",
-			                                  auth:{
-				                               user:"grocery.ofc@gmail.com",
-				                               pass:process.env.password
-			                                  }
-		                                       });	
+                                        service:"gmail",
+                                        auth:{
+                                       user:"grocery.ofc@gmail.com",
+                                       pass:process.env.password
+                                        }
+                                           });  
 
-			                             var mailoptions={
-				                           from:"grocery.ofc@gmail.com",
-				                           bcc:`${req.user.username}`,
-				                           subject:"GroceryJi",
-				                           html:`Hi,${req.user.first},welcome to GroceryJi<br>
+                                   var mailoptions={
+                                   from:"grocery.ofc@gmail.com",
+                                   bcc:`${req.user.username}`,
+                                   subject:"GroceryJi",
+                                   html:`Hi,${req.user.first},welcome to GroceryJi<br>
                                            Your Cancellation request ${prods.Name}, Price: ${prods.Price},Qty:${orders.qty} is successfully
                                            submitted..
                                            <br>
                                            Amount ${status}:${orders.Price}
-				                            <br>
-						                               
-						
-						
-					                        <a href="https://groceryji.herokuapp.com/Orders/${orders._id}"<button style=color:green>Check Your Order</button></a>						
-						                                  
-						                                  </form>`
-						            } 
+                                    <br>
+                                           
+            
+            
+                                  <a href="https://groceryji.herokuapp.com/Orders/${orders._id}"<button style=color:green>Check Your Order</button></a>           
+                                              
+                                              </form>`
+                        } 
                               
                              
                                    
  
                                       
                               console.log("hmmmmm")
-				               transport.sendMail(mailoptions,function(err,info){
-									if(err)
-									{
-										req.flash("error","something went wrong...");
+                       transport.sendMail(mailoptions,function(err,info){
+                  if(err)
+                  {
+                    req.flash("error","something went wrong...");
 
-										res.redirect("/login");
-									}
-										else{
-											console.log("here")
+                    res.redirect("/login");
+                  }
+                    else{
+                      console.log("here")
 
-										}
+                    }
 
 
-			                    })	  
+                          })    
                                 
                                 req.flash("success","Request submitted successfully")
                                 res.redirect("/orders/"+orders._id)  
 
-	})
+  })
 
 })
 
@@ -4699,9 +4712,9 @@ app.get("/mydata",function(req,res){
 
              fs.readFile("./grocery.json","utf-8",function(err,all){
 
-             	var finallys=JSON.parse(all)
+              var finallys=JSON.parse(all)
                 res.send(finallys)   
-             })         	
+             })           
          }
    })
 })
@@ -4724,81 +4737,81 @@ app.get("/review",function(req,res){
 })
 
 app.get("/data/:product",function(req,res){
-	request(`https://www.flipkart.com/search?q=${req.params.product}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off`,function(error,response,html){
-	if(!error && response.statusCode==200)
-	{
-		const $=cheerio.load(html)
-		// console.log(html)
-		$("._4ddWXP").each(function(i,el){
-			var datas=$(el)
-			console.log(datas.find(".s1Q9rs").attr("title"))
-			var val=datas.find("._30jeq3").text()
-			var final=""
-			var lets=""
-			console.log(".........................................")
-			// if(datas.find("._3Djpdu").text()){
-			//  lets=datas.find("._3Djpdu").text()
-			// }
-			// else{
+  request(`https://www.flipkart.com/search?q=${req.params.product}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off`,function(error,response,html){
+  if(!error && response.statusCode==200)
+  {
+    const $=cheerio.load(html)
+    // console.log(html)
+    $("._4ddWXP").each(function(i,el){
+      var datas=$(el)
+      console.log(datas.find(".s1Q9rs").attr("title"))
+      var val=datas.find("._30jeq3").text()
+      var final=""
+      var lets=""
+      console.log(".........................................")
+      // if(datas.find("._3Djpdu").text()){
+      //  lets=datas.find("._3Djpdu").text()
+      // }
+      // else{
 
                
-  	// 		}
-			console.log(".........................................")
-			for(var i=1;i<val.length;i++){
-							final=final+val[i]
+    //    }
+      console.log(".........................................")
+      for(var i=1;i<val.length;i++){
+              final=final+val[i]
 
-			}
-			if (final==""){
-				console.log("here")
+      }
+      if (final==""){
+        console.log("here")
                 var final=Math.floor(Math.random()*123)
 
-			    console.log(final)
-			 }
-			console.log(".............")
-			console.log(Number(final))
-			console.log(".............")
-			console.log(datas.find("._396cs4").attr("src"))	
-		    var vals=datas.find("._3I9_wc").text()
-		    var finals=""
-		    for (var i=1;i<vals.length;i++){
+          console.log(final)
+       }
+      console.log(".............")
+      console.log(Number(final))
+      console.log(".............")
+      console.log(datas.find("._396cs4").attr("src")) 
+        var vals=datas.find("._3I9_wc").text()
+        var finals=""
+        for (var i=1;i<vals.length;i++){
 
-		    	finals=finals+vals[i]
-		    }
-		    if (Number(finals)==0){
+          finals=finals+vals[i]
+        }
+        if (Number(finals)==0){
  
                     console.log("here")
 
-				    var finals=Math.floor(Math.random()*123)
-			        console.log(finals)		    
-			  }
-		    console.log(final)
-		    var info=""
-		    info=datas.find("._3Ay6Sb").text()
-		    if (info==""){
-		       if (finals && final){
+            var finals=Math.floor(Math.random()*123)
+              console.log(finals)       
+        }
+        console.log(final)
+        var info=""
+        info=datas.find("._3Ay6Sb").text()
+        if (info==""){
+           if (finals && final){
                  info=`${parseInt((Number(final)*100)/Number(finals))} % off`
-		       }
-		       else{
+           }
+           else{
 
-		       	 info="28 % off"
-		       }
-		    }
-			// product.deleteOne({key:"buiscuits"},function(err,info){
+             info="28 % off"
+           }
+        }
+      // product.deleteOne({key:"buiscuits"},function(err,info){
 
-			// })
-			product.create({image:datas.find("._396cs4").attr("src"),Name:datas.find(".s1Q9rs").attr("title"),Price:Number(final),offer:Number(finals),off:info,key:`${req.params.product}`,ratings:datas.find("._3LWZlK").text(),empty:false,stocking:5,date:Date.now(),urls:"URL",leters:""},function(err,products){
-			if (products!==undefined){
- 	
-		      // coproduct.create({image:datas.find("._396cs4").attr("src"),Price:Number(final),offer:Number(finals),key:`${req.params.product}s`,ratings:datas.find("._3LWZlK").text(),pid:products._id},function(err,cos){
-		                var p=0
+      // })
+      product.create({image:datas.find("._396cs4").attr("src"),Name:datas.find(".s1Q9rs").attr("title"),Price:Number(final),offer:Number(finals),off:info,key:`${req.params.product}`,ratings:datas.find("._3LWZlK").text(),empty:false,stocking:5,date:Date.now(),urls:"URL",leters:""},function(err,products){
+      if (products!==undefined){
+  
+          // coproduct.create({image:datas.find("._396cs4").attr("src"),Price:Number(final),offer:Number(finals),key:`${req.params.product}s`,ratings:datas.find("._3LWZlK").text(),pid:products._id},function(err,cos){
+                    var p=0
 
 
 
-		                  stocks.create({id:products._id},function(err,stoOne){
-		                  stocks.create({id:products._id},function(err,stotwo){
-		                  stocks.create({id:products._id},function(err,stothree){
-		                  stocks.create({id:products._id},function(err,stofour){
-		                  stocks.create({id:products._id},function(err,stofive){
+                      stocks.create({id:products._id},function(err,stoOne){
+                      stocks.create({id:products._id},function(err,stotwo){
+                      stocks.create({id:products._id},function(err,stothree){
+                      stocks.create({id:products._id},function(err,stofour){
+                      stocks.create({id:products._id},function(err,stofive){
                          
                           
                            
@@ -4816,7 +4829,7 @@ app.get("/data/:product",function(req,res){
                            products.save()
                             
                            
-		                  
+                      
 
                           }) 
                           })
@@ -4825,22 +4838,22 @@ app.get("/data/:product",function(req,res){
                           })
                     
               console.log(products)
-		// })	
+    // }) 
           }  
-		})	
-		// 	if(datas.find(".FHCV02u6Cp2zYL0fhQPsO").text()!==""){
+    })  
+    //  if(datas.find(".FHCV02u6Cp2zYL0fhQPsO").text()!==""){
 
 
-		// 	console.log("comments.....")
+    //  console.log("comments.....")
 
-		// 	console.log(datas.find(".FHCV02u6Cp2zYL0fhQPsO").text())
-		// }
-		})
-	 
+    //  console.log(datas.find(".FHCV02u6Cp2zYL0fhQPsO").text())
+    // }
+    })
+   
    }
    res.send("Done")
 
-})	
+})  
 })
 
 
@@ -4892,7 +4905,7 @@ app.get("/increaseStockTwo/:id/:stock",isLoggedin,function(req,res){
 app.get("/increaseStock/:id/:stock",isLoggedin,function(req,res){
   
   if(req.user.approval==true){
-	 request(`https://api-groceryji.herokuapp.com/increaseStock/${req.params.id}/${req.params.stock}`,function(error,response,data){
+   request(`https://api-groceryji.herokuapp.com/increaseStock/${req.params.id}/${req.params.stock}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -4912,7 +4925,7 @@ app.get("/increaseStock/:id/:stock",isLoggedin,function(req,res){
 
 app.get("/addProduct",function(req,res){
 
-	res.render("addProduct.ejs")
+  res.render("addProduct.ejs")
 })
 
 app.get("/deleteProduct/:id",function(req,res){
@@ -4942,9 +4955,9 @@ app.get("/deleteProduct/:id",function(req,res){
 
 //    if (req.files){
 
-//   	 var file=req.files.filename,
-//   	 filesname=file.name;
-//   	 file.mv("./public/"+filesname)
+//     var file=req.files.filename,
+//     filesname=file.name;
+//     file.mv("./public/"+filesname)
 // }
   
  
@@ -4957,7 +4970,7 @@ app.get("/deleteProduct/:id",function(req,res){
   
 //    if (req.body.image){
 
-//   	 var filesname=req.body.image
+//     var filesname=req.body.image
 //   }
     
 
@@ -4969,15 +4982,15 @@ app.get("/deleteProduct/:id",function(req,res){
 //         var p=0
 //         for (var i=0;i<parseInt(req.body.stock);i++){
 
-//         	 console.log(i)
-//         	 stocks.create({id:prod._id},function(err,stoc){
+//           console.log(i)
+//           stocks.create({id:prod._id},function(err,stoc){
 
-//         	 	prod.stock.push(stoc)
-//         	    console.log(prod)
-//         	  p=p+1
+//            prod.stock.push(stoc)
+//              console.log(prod)
+//            p=p+1
 //               if(p==parseInt(req.body.stock)){
 //                 console.log(p)
-//              	prod.save()
+//                prod.save()
 //                }
 //         })
             
@@ -5053,9 +5066,9 @@ app.get("/deleteProduct/:id",function(req,res){
 // }
 // else{
 
-// 	console.log("here")
-// 	req.flash("error","Actual price of product should be greater than offer price of product")
-// 	res.redirect("back")
+//  console.log("here")
+//  req.flash("error","Actual price of product should be greater than offer price of product")
+//  res.redirect("back")
 // }
 // }
 // else{
@@ -5073,7 +5086,7 @@ app.get("/groceryProduct",isLoggedin,function(req,res){
 
 
 request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,response,data){
-	 	 
+     
 if(!error && response.statusCode==200){
              
               var prods=JSON.parse(data)
@@ -5082,15 +5095,15 @@ if(!error && response.statusCode==200){
                         res.render("allproducts.ejs",{prods:prods})
 
            
-         }            	 	  
+         }                  
   
 
-	 })
+   })
 }
 
 else{
 
-	var searches=req.query.search
+  var searches=req.query.search
     var search=searches.toLowerCase()
 request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,response,data){
          
@@ -5108,25 +5121,25 @@ request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,resp
         
         for (var i=0;i<prods.length;i++){
 
-        	 for (var p=0;p<search.length;p++){
+           for (var p=0;p<search.length;p++){
 
-        	 	 k=p
-        	 	 var flag=true
-        	 	 for (var j=0;j<prods[i].key.length-1;j++){
+             k=p
+             var flag=true
+             for (var j=0;j<prods[i].key.length-1;j++){
 
-        	 	 	  if(prods[i].key[j]!==search[k]){
+                if(prods[i].key[j]!==search[k]){
 
-        	 	 	  	  flag=false
-        	 	 	  	  break
-        	 	 	  }
-        	 	     k++
-        	 	 }
-        	   
-        	     if (flag==true){
+                    flag=false
+                    break
+                }
+                 k++
+             }
+             
+               if (flag==true){
                     
      request(`https://api-groceryji.herokuapp.com/groceryProduct/${prods[i].key}`,function(error,response,datas){
-	 	 
-	 	             if(!error && response.statusCode==200){
+     
+                 if(!error && response.statusCode==200){
               
                          var allprods=JSON.parse(datas)
              
@@ -5135,16 +5148,16 @@ request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,resp
 
 
                        res.render("allproducts.ejs",{prods:allprods})
-                    }	         
+                    }          
 
              })
                  
                   C.push(0)
                   prods=[]
                   break
-        	     
-        	     }
-        	 }
+               
+               }
+           }
         }
   
      if(C.length==0){
@@ -5167,7 +5180,7 @@ else{
 app.get("/outof",isLoggedin,function(req,res){
  
   if(req.user.approval==true){
-	 
+   
 
 request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,response,data){
          
@@ -5178,7 +5191,7 @@ if(!error && response.statusCode==200){
 
 
            
-      var data=0 	  
+      var data=0    
       for(var i=0;i<prods.length;i++){
            
             if(prods[i].empty && prods[i].empty==true || prods[i].emptyOne && prods[i].emptyOne==true || prods[i].emptyTwo && prods[i].emptyTwo==true){
@@ -5188,18 +5201,18 @@ if(!error && response.statusCode==200){
         }
       
       }
-	 
-     	if(data>0){
+   
+      if(data>0){
 
 
-	 	  res.render("out.ejs",{prods:prods})
-	 }
-	 else{
+      res.render("out.ejs",{prods:prods})
+   }
+   else{
 
-	 	  	res.render("noout.ejs")
+        res.render("noout.ejs")
 
-	 }
-	 }
+   }
+   }
      })
  }
  else{
@@ -5268,11 +5281,10 @@ const files = ['./public/mdp-39015001361420-2-1648675367.pdf','./public/mdp-3901
 })
 })
 
-app.post("/registering",function(req,res){
+app.post("/registered",function(req,res){
  user.findOne({username:req.body.username},function(err,users){
   if (users!==null){
-    req.flash("error","Admin already exists")
-    res.redirect("back")	
+    res.send("user already exist")  
   }
   else{
      if (req.files){
@@ -5291,62 +5303,53 @@ app.post("/registering",function(req,res){
 
 
 
-    console.log("here")
-    var code=Math.floor(Math.random()*11223)
-    var transport=nodemailer.createTransport({
-			service:"gmail",
-			auth:{
-				user:"grocery.ofc@gmail.com",
-				pass:process.env.password
-			}
-		});	
-
-
-			var mailoptions={
-				from:"grocery.ofc@gmail.com",
-				bcc:`${req.body.username}`,
-				subject:"AdminGroceryJi",
-				html:`Hi,${req.body.first},welcome to Admin panel of GroceryJi<br>please activate your adminAccount<br>
-						Your activation code is <b>${code}</b>
-						
-						
-						</form>
-						`
-			}
-                console.log("hmmmmm")
-				transport.sendMail(mailoptions,function(err,info){
-					if(err)
-					{
-						req.flash("error","something went wrong...");
-
-						res.redirect("/login");
-					}
-						else{
-							console.log("here")
+    
+               
                       if(req.body.token){
-						    
+                
                             user.find({},function(err,admins){
                             var flag=true
                             for(var i=0;i<admins.length;i++){
 
                                  if(admins[i].token==req.body.token){
 
-                                    
+                                  user.findByIdAndDelete(admins[i]._id,function(err,info){  
 
                                      flag=false
-                                  
-                                                    
-                                               
-                                     res.render("active.ejs",{first:req.body.first,username:req.body.username,last:req.body.last,password:req.body.password,number:code,image:filesname,imagerear:filesnamesecond,token:req.body.token})
-                                              
-                                                   
-                                                
-                                     
-                                     break
+                                  })
+                              
+                                   break
                                  }
                             }
                            
-                        if(flag==true){
+                        if(flag==false){
+
+                           user.register(new user({first:req.body.first,last:req.body.last,email:req.body.username,name:req.body.first + " " + req.body.last,username:req.body.username,image:filesname,imagerear:filesnamesecond,offerHold:false,token:req.body.token,approval:false,date:Date.now()}),req.body.password,function(err,users){
+                                        
+                                  
+                                      if(err)
+                                  {
+                                    
+                                      console.log(err);
+                                    return res.redirect("/login");  
+                                  }
+                                
+                                    
+                                    
+                                    passport.authenticate("local")(req,res,function(){
+
+                                              res.redirect("/");
+                                              
+                                             
+                                      
+                                    });                                              
+                                                                                 
+                                                                            
+                                     
+                                     
+                                })
+                        }
+                        else if(flag==true){
                             req.flash("error","No approved token is provided")
                            res.redirect("/token")
                         }
@@ -5355,85 +5358,57 @@ app.post("/registering",function(req,res){
                       else{
                         req.flash("error","No approved token is provided")
                         res.redirect("/token")
-					}	
+          } 
                      
-                        }
+                        
 
 
-				
+        
 
-})
+
 
 }
 })
 })
 
 app.get("/forgot",function(req,res){
-	res.render("forget.ejs")
+  res.render("forget.ejs")
 })
 
 
 
 app.post("/forgot",function(req,res){
-user.findOne({username:req.body.username},function(err,users){
+user.findOne({username:req.body.username},function(err,user){
   
- if(users.approval==true){ 
-  if (users){	
-	var transport=nodemailer.createTransport({
-		service:"gmail",
-		auth:{
-			user:"grocery.ofc@gmail.com",
-			pass:process.env.password
-		}
-	})
- 
-    var mailoptions={
-				from:"grocery.ofc@gmail.com",
-				bcc:`${req.body.username}`,
-				subject:"GroceryJi",
-				html:`Hi,${users.first},welcome to admin panel of GroceryJi<br>Reset Your Password<br>
-						<a href="https://admin-groceryji.herokuapp.com/set/${users._id}">Change Password</a>
-						
-						
-						</form>
-						`
-			} 
-
- 
-             transport.sendMail(mailoptions,function(err,info){
-  	              if(err){
-                     req.flash("error","cant send the mail")
-  		             res.redirect("back")
-  	            }
-                else{
-
-    	             req.flash("success","mail sent")
-    	             res.redirect("back")
-                 }
-  })
-}
-else{
-	req.flash("error","No adminUser found")
-	res.redirect("back")
-}
-}
-else{
-
+if(user){ 
+ if(user.approval==true){ 
     
+       res.render("set.ejs",{user:user})
+
+}
+else{
+  
     res.render("noaprove.ejs")
+
+}
+}
+else{
+  
+   req.flash("error","No adminUser found")
+   res.redirect("back")
+    
 }
 })
 })
 
 
 
-app.get("/set/:id",function(req,res){
+// app.get("/set/:id",function(req,res){
 
  
-	user.findById(req.params.id,function(err,user){
-		res.render("set.ejs",{user:user})
-	})
-})
+//  user.findById(req.params.id,function(err,user){
+//  })
+// })
 
 
 
@@ -5441,29 +5416,29 @@ app.get("/set/:id",function(req,res){
 
 
 app.post("/setPassword",function(req,res){
-	user.findOne({username:req.body.username},function(err,users){
+  user.findOne({username:req.body.username},function(err,users){
       if(users.approval==true){
         if (req.body.password==req.body.confirm){
 
-		users.setPassword(req.body.password,function(err,users){
-			users.save()
-			req.flash("success","Password changed")
-			res.redirect("/")
-		})
-	
-	}
+    users.setPassword(req.body.password,function(err,users){
+      users.save()
+      req.flash("success","Password changed")
+      res.redirect("/")
+    })
+  
+  }
     else{
         req.flash("error","Password not matched") 
-    	res.redirect("back")
+      res.redirect("back")
     }
 
-	  }
+    }
       else{
 
         res.render("noaprove.ejs")
       }
  
-	})
+  })
 })
 
 
@@ -5573,76 +5548,57 @@ else{
 
 
 
-app.post("/registered",function(req,res){
-			// if(req.files)
-			// {
-			// 	var file=req.files.filename,
-			// 		filesname=file.name;
-			// 		file.mv("./public/"+filesname);
-			// }
-			if(req.body.two)
-			{
-			if(req.body.one!==req.body.two)
-			{
-				 req.flash("error","Your code was wrong,it's destroyed,try again...")
-				 res.redirect("/login")
-			}
-			
-		   	
-			
-			else{
-			
-              user.find({},function(err,admins){
-             var flag=true
-             for(var i=0;i<admins.length;i++){
+// app.post("/registered",function(req,res){
+//      // if(req.files)
+//      // {
+//      //  var file=req.files.filename,
+//      //    filesname=file.name;
+//      //    file.mv("./public/"+filesname);
+//      // }
+//      if(req.body.two)
+//      {
+//      if(req.body.one!==req.body.two)
+//      {
+//         req.flash("error","Your code was wrong,it's destroyed,try again...")
+//         res.redirect("/login")
+//      }
+      
+        
+      
+//      else{
+      
+//               user.find({},function(err,admins){
+//              var flag=true
+//              for(var i=0;i<admins.length;i++){
 
-                 if(admins[i].token==req.body.token){
+//                  if(admins[i].token==req.body.token){
 
-                      flag=false
-                     user.findByIdAndDelete(admins[i]._id,function(err,info){
+//                       flag=false
+//                      user.findByIdAndDelete(admins[i]._id,function(err,info){
 
-                     })         
+//                      })         
                     
-                    break
-                 }
-              }
+//                     break
+//                  }
+//               }
   
-         if(flag==false){  
-            user.register(new user({first:req.body.first,last:req.body.last,email:req.body.username,name:req.body.first + " " + req.body.last,username:req.body.username,image:req.body.files,imagerear:req.body.filesrear,offerHold:false,token:req.body.token,approval:false,date:Date.now()}),req.body.password,function(err,users){
-					
-		
-        if(err)
-		{
-			
-				console.log(err);
-			return res.redirect("/login");	
-		}
-	
-			
-			
-			passport.authenticate("local")(req,res,function(){
+//          if(flag==false){  
+            
+    
 
-                    req.flash("success","successfully Registered...");
-                res.redirect("/");
-                
-               
-				
-			});
-		
+// });  
+// }
+// })
 
-});	
-}
-})
+// }
 
-}
+// }
+// else{
+//    req.flash("error","Please give the code as input...")
+//    res.redirect("back")
 
-}
-else{
-		req.flash("error","Please give the code as input...")
-		res.redirect("back")
-
-}
-});
+// }
+// });
 
 app.get("/token",function(req,res){
 
@@ -5653,7 +5609,7 @@ app.get("/token",function(req,res){
 
 app.get("/logout",function(req,res){
 
-	req.logout()
+  req.logout()
    req.flash("success","We Have Logged You Out!")
    res.redirect("/token")
 
@@ -5735,7 +5691,7 @@ failureRedirect:"/login"
 
 app.get("/",isLoggedin,function(req,res){
  
- 
+
 request(`https://api-groceryji.herokuapp.com/orders`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
@@ -5754,27 +5710,27 @@ if(req.user.approval==true){
 
    if (orders.length>0){
 
-  	 for (var i=0;i<orders.length;i++){
+     for (var i=0;i<orders.length;i++){
 
-  	 	if (orders[i].returnId==""){
+      if (orders[i].returnId==""){
 
-  	 		 totalSum=totalSum+orders[i].Price
-  	 	}
-  	 } 
+         totalSum=totalSum+orders[i].Price
+      }
+     } 
 
-  	 res.render("adminOrders.ejs",{orders:orders,totalSum:totalSum,search:""})
+     res.render("adminOrders.ejs",{orders:orders,totalSum:totalSum,search:""})
    }
    
    else{
 
-   	    	 res.render("noOrders.ejs")
+           res.render("noOrders.ejs")
 
    }
   
 }
 else{
 
-	var key=req.query.search
+  var key=req.query.search
     var find=[]
 
        
@@ -5797,6 +5753,7 @@ else{
               
 
                   }
+     
                   k=k+1 
 
               
@@ -5876,7 +5833,7 @@ app.get("/statusChange/:id/:key",function(req,res){
 app.get("/allcancelOrders/:key",isLoggedin,function(req,res){
 
  if(req.user.approval==true){
-	
+  
 request(`https://api-groceryji.herokuapp.com/allcancelOrders/${req.params.key}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
@@ -5897,7 +5854,7 @@ request(`https://api-groceryji.herokuapp.com/allcancelOrders/${req.params.key}`,
 
       
       
-	 
+   
  }
  else{
 
@@ -5926,13 +5883,13 @@ function isLoggedin(req,res,next){
 
    
  
- 	
+  
 }  
     
-	
+  
 
 
 app.listen(port,function(){
 
-	console.log("server 4 has started")
+  console.log("server 4 has started")
 })
