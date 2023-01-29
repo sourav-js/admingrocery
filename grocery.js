@@ -15,7 +15,6 @@ qs = require("querystring"),
 pdf = require('pdf-parse'),
 pdfMerge = require('pdf-merge'),
 
-smtpTransport = require('nodemailer-smtp-transport'),
 pdf2base64 = require('image-to-base64'),
 
 flash                   =require("connect-flash"),
@@ -475,13 +474,7 @@ app.get("/time",function(req,res){
 })
 
 
-cron.schedule("*/5 * * * *",function(){
 
-    request("https://grocery-ji.herokuapp.com/autoremove",function(error,response,data){
-
-
-    })
-})
 
 app.get("/autoremove",function(req,res){
 
@@ -1437,7 +1430,7 @@ app.get("/month/:id",isLoggedin,function(req,res){
      var totalSum=0
 if(req.user.approval==true){ 
  if (!req.query.search){
- request(`https://api-groceryji.herokuapp.com/month/${req.params.id}`,function(error,response,data){
+ request(`http://localhost:3008/month/${req.params.id}`,function(error,response,data){
     
     if(!error && response.statusCode==200){ 
 
@@ -1469,7 +1462,7 @@ if(req.user.approval==true){
 
      
          
-request(`https://api-groceryji.herokuapp.com/month/${req.params.id}`,function(error,response,datas){
+request(`http://localhost:3008/month/${req.params.id}`,function(error,response,datas){
      
            
 
@@ -1504,7 +1497,7 @@ request(`https://api-groceryji.herokuapp.com/month/${req.params.id}`,function(er
             
               if (flag==true){
                  find.push(0)
-            request(`https://api-groceryji.herokuapp.com/key/${orders[i].name}`,function(error,response,data){
+            request(`http://localhost:3008/key/${orders[i].name}`,function(error,response,data){
                      var items=[]
                      if(!error && response.statusCode==200){
                          
@@ -1572,7 +1565,7 @@ app.get("/vip",isLoggedin,function(req,res){
     
  if(req.user.approval==true){
   if(!req.query.search){
-  request("https://api-groceryji.herokuapp.com/vip",function(error,response,data){
+  request("http://localhost:3008/vip",function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -1597,7 +1590,7 @@ app.get("/vip",isLoggedin,function(req,res){
  else{
     var key=req.query.search
     var find=[]
-request("https://api-groceryji.herokuapp.com/users",function(error,response,data){
+request("http://localhost:3008/users",function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -1625,7 +1618,7 @@ request("https://api-groceryji.herokuapp.com/users",function(error,response,data
                      p=p+1
                  }
                  if(flag==true){
-     request(`https://api-groceryji.herokuapp.com/vip/${users[i].name}`,function(error,response,data){
+     request(`http://localhost:3008/vip/${users[i].name}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -1678,7 +1671,7 @@ app.get("/moreMonth/:id/:mon",isLoggedin,function(req,res){
      
      var total=0
  
-       request(`https://api-groceryji.herokuapp.com/order/${req.params.id}`,function(error,response,data){
+       request(`http://localhost:3008/order/${req.params.id}`,function(error,response,data){
          if(!error && response.statusCode==200){
              
               var orders=JSON.parse(data)
@@ -1692,7 +1685,7 @@ app.get("/moreMonth/:id/:mon",isLoggedin,function(req,res){
           }
        }
       
-      request(`https://api-groceryji.herokuapp.com/user/${req.params.id}`,function(error,response,datas){
+      request(`http://localhost:3008/user/${req.params.id}`,function(error,response,datas){
          if(!error && response.statusCode==200){
              
               var alluser=JSON.parse(datas) 
@@ -1731,13 +1724,13 @@ else{
 app.get("/updateCustomersStatus/:id/:mon",function(req,res){
  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
                             var date=new Date()
-request(`https://api-groceryji.herokuapp.com/userid/${req.params.id}`,function(error,response,data){
+request(`http://localhost:3008/userid/${req.params.id}`,function(error,response,data){
          if(!error && response.statusCode==200){
              
               var users=JSON.parse(data)
              
 
-request(`https://api-groceryji.herokuapp.com/updateCustomersStatus/${req.params.id}/${req.params.mon}`,function(error,response,datas){
+request(`http://localhost:3008/updateCustomersStatus/${req.params.id}/${req.params.mon}`,function(error,response,datas){
          if(!error && response.statusCode==200){        
                                        var date=new Date()
 
@@ -4862,7 +4855,7 @@ app.get("/data/:product",function(req,res){
 app.get("/increaseStockOne/:id/:stock",isLoggedin,function(req,res){
   
   if(req.user.approval==true){
-   request(`https://api-groceryji.herokuapp.com/increaseStockOne/${req.params.id}/${req.params.stock}`,function(error,response,data){
+   request(`http://localhost:3008/increaseStockOne/${req.params.id}/${req.params.stock}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -4884,7 +4877,7 @@ app.get("/increaseStockOne/:id/:stock",isLoggedin,function(req,res){
 app.get("/increaseStockTwo/:id/:stock",isLoggedin,function(req,res){
   
   if(req.user.approval==true){
-      request(`https://api-groceryji.herokuapp.com/increaseStockTwo/${req.params.id}/${req.params.stock}`,function(error,response,data){
+      request(`http://localhost:3008/increaseStockTwo/${req.params.id}/${req.params.stock}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -4905,7 +4898,7 @@ app.get("/increaseStockTwo/:id/:stock",isLoggedin,function(req,res){
 app.get("/increaseStock/:id/:stock",isLoggedin,function(req,res){
   
   if(req.user.approval==true){
-   request(`https://api-groceryji.herokuapp.com/increaseStock/${req.params.id}/${req.params.stock}`,function(error,response,data){
+   request(`http://localhost:3008/increaseStock/${req.params.id}/${req.params.stock}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -4930,7 +4923,7 @@ app.get("/addProduct",function(req,res){
 
 app.get("/deleteProduct/:id",function(req,res){
 
-  request(`https://api-groceryji.herokuapp.com/deleteProduct/${req.params.id}`,function(error,response,data){
+  request(`http://localhost:3008/deleteProduct/${req.params.id}`,function(error,response,data){
          if(!error && response.statusCode==200){
              
               
@@ -5085,7 +5078,7 @@ app.get("/groceryProduct",isLoggedin,function(req,res){
    if(!req.query.search){
 
 
-request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,response,data){
+request("http://localhost:3008/groceryProduct",function(error,response,data){
      
 if(!error && response.statusCode==200){
              
@@ -5105,7 +5098,7 @@ else{
 
   var searches=req.query.search
     var search=searches.toLowerCase()
-request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,response,data){
+request("http://localhost:3008/groceryProduct",function(error,response,data){
          
       if(!error && response.statusCode==200){
               
@@ -5137,7 +5130,7 @@ request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,resp
              
                if (flag==true){
                     
-     request(`https://api-groceryji.herokuapp.com/groceryProduct/${prods[i].key}`,function(error,response,datas){
+     request(`http://localhost:3008/groceryProduct/${prods[i].key}`,function(error,response,datas){
      
                  if(!error && response.statusCode==200){
               
@@ -5182,7 +5175,7 @@ app.get("/outof",isLoggedin,function(req,res){
   if(req.user.approval==true){
    
 
-request("https://api-groceryji.herokuapp.com/groceryProduct",function(error,response,data){
+request("http://localhost:3008/groceryProduct",function(error,response,data){
          
 if(!error && response.statusCode==200){
              
@@ -5234,7 +5227,7 @@ token.findOne({code:req.body.token},function(err,tokens){
    }
    else{
      
-     res.redirect("https://userverify-groceryji.herokuapp.com/")
+     res.redirect("http://localhost:3006/")
    }
   })
 })
@@ -5692,7 +5685,7 @@ failureRedirect:"/login"
 app.get("/",isLoggedin,function(req,res){
  
 
-request(`https://api-groceryji.herokuapp.com/orders`,function(error,response,data){
+request(`http://localhost:3008/orders`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -5761,7 +5754,7 @@ else{
             
               if (flag==true){
                  find.push(0)
-            request(`https://api-groceryji.herokuapp.com/key/${orders[i].name}`,function(error,response,data){
+            request(`http://localhost:3008/key/${orders[i].name}`,function(error,response,data){
                      var items=[]
                      if(!error && response.statusCode==200){
                          
@@ -5815,7 +5808,7 @@ else{
 })
 app.get("/statusChange/:id/:key",function(req,res){
 
- request(`https://api-groceryji.herokuapp.com/statusChange/${req.params.id}/${req.params.key}`,function(error,response,data){
+ request(`http://localhost:3008/statusChange/${req.params.id}/${req.params.key}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
@@ -5834,7 +5827,7 @@ app.get("/allcancelOrders/:key",isLoggedin,function(req,res){
 
  if(req.user.approval==true){
   
-request(`https://api-groceryji.herokuapp.com/allcancelOrders/${req.params.key}`,function(error,response,data){
+request(`http://localhost:3008/allcancelOrders/${req.params.key}`,function(error,response,data){
          var items=[]
          if(!error && response.statusCode==200){
              
