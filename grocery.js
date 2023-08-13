@@ -574,7 +574,7 @@ app.get("/api",function(req,res)
 
 app.get("/product",function(req,res){
 
-  product.find({Name:{$regex:"eggs",$options:"$i"}},function(err,prod){
+  product.find({Name:{$regex:"eggs",$options:"i"}},function(err,prod){
     console.log(prod)
   })
 
@@ -590,7 +590,7 @@ app.get("/category",function(req,res){
 
 app.get("/catproduct/:keys",function(req,res){
   
-    product.find({key:{$regex:req.params.keys,$options:"$i"}},function(err,prod){
+    product.find({key:{$regex:req.params.keys,$options:"i"}},function(err,prod){
                
                          res.render("products.ejs",{prod:prod})
                     
@@ -722,7 +722,7 @@ user.findById(primary).populate("pops").exec(function(err,users){
 
               flag=false
               C.push(0)
-                product.find({key:{$regex:produ[p].key,$options:"$i"}},function(err,prod){
+                product.find({key:{$regex:produ[p].key,$options:"i"}},function(err,prod){
                          
                          res.render("products.ejs",{prod:prod,users:users})
                     
@@ -823,7 +823,7 @@ app.get("/moreinfo/:id",function(req,res){
 
     } 
 
-     product.find({key:{$regex:prod.key,$options:"$i"}},function(err,prods){
+     product.find({key:{$regex:prod.key,$options:"i"}},function(err,prods){
       // prods.push(prods)      
       // console.log(prods)
             if(req.user){
